@@ -1,30 +1,65 @@
 NAME		:= push_swap
 
-INCS		:= -I libft/include -I include
+LIB		:= ft
+LIB_FT		:= include/libft/libft.a
+INCS		:= include \
+	include/libft/include
 
 BUILD_DIR	:= .build
+DIR_MK		 = mkdir -p $(@D)
 
-DEPS		:= $(addprefix $(BUILD_DIR)/, $(SRCS:.c=.d))
+SRC_DIR		:= src
+SRC			:= push_swap.c
+SRCS		:= $(addprefix $(SRC_DIR)/,$(SRC))
 
-OBJ			:= $(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
-# Path: srcs/
-SRCS_DIR	:= src/
-SRCS		:= push_swap.c
+OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+DEPS		:= $(OBJS:.o=.d)
+
+CC			:= clang
+CFLAGS		:= -Wall -Wextra -Werror
+CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
+LDFLAGS		:= $(addprefix -L,$(dir $(LIB_FT)))
+LDLIB		:= $(addprefix -l,$(LIB))
+
+MAKEFLAGS	+= --silent --no-print-directory
 
 all: $(NAME)
 
-$(NAME):
-	@echo "Compiling..."
-	@cc -Wall -Wextra -Werror -MMD -MP $(INCS) -L./libft -lft $(addprefix $(SRCS_DIR), $(SRCS)) -o $(NAME)
-	@echo "Done!"
+$(NAME): $(OBJS) $(LIB_FT)
+	$(CC) $(LDFLAGS) $(OBJS) $(LDLIB) -o $(NAME)
+
+$(LIB_FT):
+	$(MAKE) -C $(@D)
+
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+	$(info Compiling...)
+	$(DIR_MK)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+	$(info Done!)
+
+-include $(DEPS)
 
 clean:
-	@echo "Cleaning..."
-	@rm -rf $(NAME)
-	@echo "Done!"
+	$(info Cleaning...)
+	rm -rf $(NAME)
+	$(info Done!)
 
 fclean: clean
-	rm -rf $(BUILD_DIR)/%.o
+	rm -rf $(BUILD_DIR)
 
 update:
 	git submodule update --init --recursive
+
+re:
+	$(MAKE) fclean
+	$(MAKE) all
+
+run: re
+	-./$(NAME)
+
+upgrade:
+	$(MAKE) update
+	$(MAKE) run
+
+.PHONY: run update re
+.SILENT:
