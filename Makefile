@@ -45,10 +45,12 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	$(info Cleaning...)
+	make -C $(dir $(LIB_FT)) clean
 	rm -rf $(NAME)
 	$(DONE)
 
 fclean: clean
+	make -C $(dir $(LIB_FT)) fclean
 	rm -rf $(BUILD_DIR)
 
 update:
