@@ -52,7 +52,7 @@ fclean: clean
 	rm -rf $(BUILD_DIR)
 
 update:
-	git submodule update --init --recursive
+	cd ./include && git submodule update --init --recursive && cd ..
 
 re:
 	$(MAKE) fclean
