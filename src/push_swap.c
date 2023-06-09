@@ -8,5 +8,5 @@ int	main(int argc, char **argv)
 	// stack_b = NULL;
 	ft_printf("argc > 1\n");
 	ft_printf("argc: %d\n", argc);
-	ft_printf(argv[0]);
+	ft_printf(argv[1]);
 }

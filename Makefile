@@ -1,6 +1,6 @@
 NAME		:= push_swap
 
-LIB		:= ft
+LIB			:= ft
 LIB_FT		:= include/libft/libft.a
 INCS		:= include \
 	include/libft/include
@@ -23,10 +23,13 @@ LDLIB		:= $(addprefix -l,$(LIB))
 
 MAKEFLAGS	+= --silent --no-print-directory
 
+DONE		+= printf "\033[0;32m\xE2\x9C\x93\n\033[0m"
+
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIB_FT)
 	$(CC) $(LDFLAGS) $(OBJS) $(LDLIB) -o $(NAME)
+	$(info creating $(NAME) executable)$(DONE)
 
 $(LIB_FT):
 	$(MAKE) -C $(@D)
@@ -35,14 +38,15 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(info Compiling...)
 	$(DIR_MK)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
-	$(info Done!)
+# $(info Done)
+	$(DONE)
 
 -include $(DEPS)
 
 clean:
 	$(info Cleaning...)
 	rm -rf $(NAME)
-	$(info Done!)
+	$(DONE)
 
 fclean: clean
 	rm -rf $(BUILD_DIR)
