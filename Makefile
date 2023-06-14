@@ -9,14 +9,14 @@ BUILD_DIR	:= .build
 DIR_MK		 = mkdir -p $(@D)
 
 SRC_DIR		:= src
-SRC			:= push_swap.c
+SRC			:= push_swap.c basic_stack.c
 SRCS		:= $(addprefix $(SRC_DIR)/,$(SRC))
 
 OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS		:= $(OBJS:.o=.d)
 
 CC			:= clang
-CFLAGS		:= -Wall -Wextra -Werror
+CFLAGS		:= -Wall -Wextra -Werror -g
 CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L,$(dir $(LIB_FT)))
 LDLIB		:= $(addprefix -l,$(LIB))
