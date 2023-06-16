@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "/Users/jschwabe/Documents/projects/push-swap/push_swap",
-			"args": ["0 14 2 3"],
+			"args": ["3 14 2 10"],
 			"stopAtEntry": false,
 			"environment": [],
 			"cwd": "/Users/jschwabe/Documents/projects/push-swap",
