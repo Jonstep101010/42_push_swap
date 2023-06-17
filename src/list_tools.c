@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:35:36 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/17 12:17:32 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/17 20:17:36 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,18 @@ void	prepend(t_stack *stack, int new_data)
 	new_item->prev = stack->tail;
 	new_item->prev->next = new_item;
 	stack->head = new_item;
+}
+
+void	stack_push(t_stack *stack, t_stack *popped)
+{
+	popped->next = stack->head;
+	if (stack->head == NULL)
+	{
+		popped->prev = popped;
+		stack->head = popped;
+		return ;
+	}
+	popped->prev = stack->tail;
+	popped->prev->next = popped;
+	stack->head = popped;
 }

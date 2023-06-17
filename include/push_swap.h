@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:19:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/17 14:44:20 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/17 20:12:51 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,13 @@ void	populate(t_stack *stack, int new_data);
 //operations//
 void	swap(t_stack *stack);
 void	swap_both(t_stack *stack_a, t_stack *stack_b);
+void	push(t_stack *to_push, t_stack *to_pop);
+t_stack	*pop(t_stack *to_pop);
 
 //list functions//
 void	append(t_stack *stack, int new_data);
 void	prepend(t_stack *stack, int new_data);
+void	stack_push(t_stack *stack, t_stack *popped);
 
 //list checking//
 void	print_stack(t_stack *stack);

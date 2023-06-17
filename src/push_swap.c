@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:17:14 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/17 12:33:57 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/17 20:00:26 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,27 @@
 int	main(int argc, char *argv[])
 {
 	t_stack	a;
+	t_stack	b;
 
 	if (argc >= 2)
+	{
 		parse_input(&a, argv);
+		parse_input(&b, argv);
+	}
 	else
 		scope_error("invalid input");
-	prepend(&a, 42);
+	prepend(&b, 42);
+	// print_stack(&b);
+	check_stack(&b);
+	push(&a, &b);
 	check_stack(&a);
-	swap(&a);
-	print_stack(&a);
-	append(&a, 101010);
-	print_stack(&a);
-	print_stack(&a);
+	check_stack(&b);
+	// swap(&a);
+	// print_stack(&a);
+	// append(&a, 101010);
+	// print_stack(&a);
+	// print_stack(&a);
+	// push(&a, &b);
 	return (0);
 }
 
@@ -53,12 +62,15 @@ int	main(int argc, char *argv[])
 // 	i++;
 // }
 // ft_printf("%d\n", arr[i]);
-// ft_printf("next %d n n %d\n", (a.head->next->data), (a.head->next->next->data));
-// ft_printf("prev %d p p %d\n", (a.head->prev->data), (a.head->prev->prev->data));
+// ft_printf("next %d n n %d\n", 
+//(a.head->next->data), (a.head->next->next->data));
+// ft_printf("prev %d p p %d\n", (a.head->prev->data), 
+//(a.head->prev->prev->data));
 // ft_printf("%d\n\n", a.data);
 // t_stackiter = a.head;
 // a.tail = a.head->prev;
-// ft_printf("next %d n n %d\n", (a.head->next->data), (a.head->next->next->data));
+// ft_printf("next %d n n %d\n", (a.head->next->data),
+// (a.head->next->next->data));
 // // ft_printf("prev %p tail %p\n", (a.head->prev), a.tail);
 // // ft_printf("prev %p tail %p\n", (a.head->prev), a.tail);
 // ft_printf("prev %d tail %d\n", (a.head->prev->data), a.tail->data);
