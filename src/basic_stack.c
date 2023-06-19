@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:02:26 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/19 14:06:30 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:24:39 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	swap(t_stack *stack)
 
 	if (elementcount(stack) <= 1)
 		return ;
-	if (!stack)
-		scope_error("swap attempt on ZERO value");
+	// if (!stack)
+	// 	scope_error("swap attempt on ZERO value");
 	tmp = stack->head->next->data;
 	stack->head->next->data = stack->head->data;
 	stack->head->data = tmp;

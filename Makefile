@@ -9,7 +9,7 @@ INCS		:= include \
 # DIR_MK		 = mkdir -p $(@D)
 
 SRC_DIR		:= src
-SRC			:= push_swap.c input_handling.c basic_stack.c rotate_stack.c list_tools.c list_checks.c error.c
+SRC			:= push_swap.c input_handling.c basic_stack.c rotate_stack.c list_tools.c list_checks.c error.c print_return.c
 SRCS		:= $(addprefix $(SRC_DIR)/,$(SRC))
 
 # OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)

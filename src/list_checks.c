@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:12 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/19 13:34:47 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:56:48 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,19 @@ size_t	elementcount(t_stack *stack)
 		i++;
 	}
 	return (i);
+}
+
+bool	check_links(t_stack *stack)
+{
+	t_stack	*current;
+
+	if (!elementcount(stack))
+		return (ft_printf("\ncheck: Empty!\n"), false);
+	current = stack->head;
+	do {
+		if (current->next->prev != current)
+			return (ft_printf("\ncheck: broken link - %d (next pointer)\n", current->data), false);
+		current = current->next;
+	}	while (current->next != stack->head);
+	return (true);
 }

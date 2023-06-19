@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:19:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/19 14:07:03 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:52:36 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,13 @@ void	print_stack(t_stack *stack);
 void	print_stack_rev(t_stack *stack);
 bool	check_stack(t_stack *stack);
 size_t	elementcount(t_stack *stack);
+bool	check_links(t_stack *stack);
 
 //error handling//
 void	scope_error(char *msg);
 void	scope_success(char *msg, t_stack *stack);
+
+//return values//
+void	display_return(t_stack *a);
+// void	display_operations()
 #endif
