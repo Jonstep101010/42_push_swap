@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:17:14 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/17 20:00:26 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:05:10 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,26 @@ int	main(int argc, char *argv[])
 	}
 	else
 		scope_error("invalid input");
-	prepend(&b, 42);
-	// print_stack(&b);
-	check_stack(&b);
-	push(&a, &b);
+	swap(&a);
 	check_stack(&a);
-	check_stack(&b);
-	// swap(&a);
-	// print_stack(&a);
-	// append(&a, 101010);
-	// print_stack(&a);
-	// print_stack(&a);
-	// push(&a, &b);
 	return (0);
 }
 
+//printf("\nnumber of elements %zu\n", elementcount(&a));
+//prepend(&a, 42);
+//print_stack(&b);
+//check_stack(&b);
+//push(&a, &b);
+//check_stack(&a);
+//check_stack(&b);
+//swap(&a);
+//print_stack(&a);
+//append(&a, 101010);
+//print_stack(&a);
+//print_stack(&a);
+//push(&a, &b);
+//rotate(&a);
+//rev_rotate(&a);
 // ft_printf("next(%d)\n", stack->next->data);
 // ft_printf("prev %d tail %d\n", (stack->head->prev->data), stack->tail->data);
 // ft_printf("\nswap(%d)\n", stack->next->data);

@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:02:26 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/17 20:29:18 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:06:30 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,6 @@ void	push(t_stack *to_push, t_stack *to_pop)
 	if (popnode)
 		stack_push(to_push, popnode);
 }
-
-/* void	rotate(t_stack *to_r)
-{
-	t_stack	*tmp;
-
-	tmp = to_r->tail;
-	to_r->tail = to_r->head;
-} */
 
 t_stack	*pop(t_stack *to_pop)
 {
@@ -77,6 +69,8 @@ void	swap(t_stack *stack)
 {
 	int	tmp;
 
+	if (elementcount(stack) <= 1)
+		return ;
 	if (!stack)
 		scope_error("swap attempt on ZERO value");
 	tmp = stack->head->next->data;

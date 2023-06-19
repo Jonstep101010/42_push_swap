@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:23:35 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/17 14:44:04 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/19 13:22:39 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	scope_error(char *msg)
 void	scope_success(char *msg, t_stack *stack)
 {
 	print_stack(stack);
+	print_stack_rev(stack);
 	ft_printf(" ⬆️ Checked ⬆️ \033[1;32m%s\033[1;0m", msg);
 	ft_printf(" \033[1;32m\xE2\x9C\x93\033[1;0m\n");
 }
