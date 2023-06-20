@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:17:14 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/20 13:50:53 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:52:04 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,15 @@ int	main(int argc, char *argv[])
 
 	if (argc >= 2)
 	{
-		parse_input(&a, &b, argv);
+		parse_input(&a, argv);
+		parse_input(&b, argv);
 	}
 	else
 		scope_error("invalid input");
 	swap(&a);
 	check_stack(&a);
 	check_links(&a);
-	push(&b, &a);
-	push(&b, &a);
 	display_return(&a);
-	display_return(&b);
 	return (0);
 }
 
