@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 19:01:24 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/28 11:25:57 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/28 21:50:06 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,6 @@
 
 //need to still check input for duplicates
 //need to check if input is a number
-
-
-
-//function to check if stack is sorted already
-bool	is_sorted(t_stack *stack)
-{
-	t_stack	*t_i;
-
-	t_i = stack->head;
-	while (t_i->next != stack->head)
-	{
-		if (t_i->data > t_i->next->data)
-			return (false);
-		t_i = t_i->next;
-	}
-	return (true);
-}
 
 /*
 ** @brief sort three digits
