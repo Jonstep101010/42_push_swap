@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 19:01:24 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/27 12:12:57 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/28 11:25:57 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,11 @@ int	main(int argc, char *argv[])
 	t_stack	a;
 	// t_stack	b;
 
+	// a = NULL;
+	// a = ft_calloc(1, sizeof(t_stack));
+	
 	if (argc >= 2)
-		parse_input(&a, argv);
+		parse_input(&a, argc, argv);
 	else
 		scope_error("invalid input");
 	// check_stack(&b);

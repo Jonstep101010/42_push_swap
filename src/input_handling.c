@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:15:43 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/28 10:39:33 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/28 11:52:18 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,55 @@
 // 	new_item->next->prev = new_item;
 // 	stack->tail = stack->head->prev;
 // }
+static	bool	int_format(const char *str)
+{
+	int	i;
 
-void	check_input(t_stack *stack)
+	i = 0;
+	while (str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i])
+	{
+		if (!(ft_isdigit(str[i])))
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+static bool	check_duplicate(t_stack *stack)
 {
 	t_stack	*t_i;
-
 	t_i = stack->head;
-	check_stack(stack);
-	// printf("isdigit test %d\n", ft_isdigit(t_i->data=''));
 	while (t_i->next != stack->head)
 	{
 		if (t_i->data == t_i->next->data)
-			scope_error("stack contains duplicate values");
-		// if (!(t_i->data >= '0') || (char)t_i->data > 57)
-		// 	scope_error("stack contains non-numeric values");
+			return (scope_error("stack contains duplicate values"), false);
 		t_i = t_i->next;
 	}
+	return (true);
 }
 
-t_stack	parse_input(t_stack *stack, int argc, char **argv)
+static	bool validate_input(const char *str)
+{
+	if (!int_format(str))
+		return (false);
+	if (ft_atoi(str) > INT_MAX || ft_atoi(str) < INT_MIN)//needs long format
+		return (false);
+	//need to check duplicates as well
+	return (true);
+}
+
+
+
+void	parse_input(t_stack *stack, int argc, char **argv)
 {
 	int	i;
 	int	ii;
 	char	**tmp;
-	// int x;
-	// int tmp;
-
+	
 	i = 0;
 	while (++i < argc)
 	{
@@ -75,11 +98,22 @@ t_stack	parse_input(t_stack *stack, int argc, char **argv)
 			scope_error("tmp conversion error");
 		while (tmp[++ii])
 		{
-			if (ft_atoi(tmp[ii]) > INT_MAX || ft_atoi(tmp[ii]) < INT_MIN)
-				scope_error("stack contains values outside of int range");
-			populate(stack, ft_atoi(tmp[ii]));
+			if (validate_input(tmp[ii]) && i == 1)
+			{
+				populate(stack, ft_atoi(tmp[ii]));
+				stack->elements = 1;
+			}
+			else if (validate_input(tmp[ii]) && check_duplicate(stack))
+			{
+				populate(stack, ft_atoi(tmp[ii]));
+				stack->elements++;
+			}
+			else
+				scope_error("stack contains non-numeric values");
 		}
+		arr_free(tmp);
 	}
+}
 	
 	// while (argv[i + 1])
 	// {
@@ -116,8 +150,7 @@ t_stack	parse_input(t_stack *stack, int argc, char **argv)
 	// while (i-- > 0)
 	// 	build_b(&b);
 	// return (b);
-	return (*stack);
-}
+
 
 void	populate(t_stack *stack, int new_data)
 {
