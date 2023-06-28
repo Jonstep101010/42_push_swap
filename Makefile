@@ -1,19 +1,19 @@
 NAME		:= push_swap
 
 LIB			:= ft
-LIB_FT		:= include/libft/libft.a
+LIB_FT		:= libft/libft.a
 INCS		:= include \
-	include/libft/include
+	libft/include
 
-# BUILD_DIR	:= .build
-# DIR_MK		 = mkdir -p $(@D)
+BUILD_DIR	:= .build
+DIR_MK		 = mkdir -p $(@D)
 
 SRC_DIR		:= src
-SRC			:= push_swap.c input_handling.c basic_stack.c rotate_stack.c list_tools.c list_checks.c error.c print_return.c
+SRC			:= push_swap.c input_handling.c basic_stack.c rotate_stack.c list_tools.c list_checks.c error.c print_return.c sorting.c free_stack.c convert_input.c
 SRCS		:= $(addprefix $(SRC_DIR)/,$(SRC))
 
-# OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
-# DEPS		:= $(SRCS:.c=.d)
+OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+DEPS		:= $(SRCS:.c=.d)
 
 CC			:= clang
 CFLAGS		:= -Wall -Wextra -Werror -g
@@ -34,14 +34,14 @@ $(NAME): $(SRCS) $(LIB_FT)
 $(LIB_FT):
 	$(MAKE) -C $(@D)
 
-# $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-# 	$(info Compiling...)
-# 	$(DIR_MK)
-# 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
-# # $(info Done)
-# 	$(DONE)
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+	$(info Compiling...)
+	$(DIR_MK)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+# $(info Done)
+	$(DONE)
 
-# -include $(DEPS)
+-include $(DEPS)
 
 clean:
 	$(info Cleaning...)

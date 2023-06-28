@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:12 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/19 15:56:48 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/27 10:35:47 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,16 @@ void	print_stack(t_stack *stack)
 	if (!stack->head)
 		return ((void)ft_printf("\n!EMPTY/BROKEN!\n"));
 	t_i = stack->head;
-	while (t_i != stack->head->prev)
+	while (t_i->next != stack->head)
 	{
+		// if (t_i->next->data == t_i->next->next->data)
+		// {
+		// 	if (t_i == stack->head)
+		// 		ft_printf("\n(single data node) %d", t_i->data);
+		// 	else
+		// 		ft_printf("%d (last filled)", t_i->data);
+		// 	return ;
+		// }
 		if (t_i == stack->head)
 			ft_printf("\n(head) %d -> ", t_i->data);
 		else
@@ -63,11 +71,9 @@ bool	check_stack(t_stack *stack)
 {
 	t_stack	*head;
 	t_stack	*tail;
-	t_stack	*t_i;
 
 	head = stack->head;
 	tail = stack->tail;
-	t_i = stack->head;
 	if (head->prev != tail)
 		scope_error("tail is not head->prev");
 	if (tail->next != head)

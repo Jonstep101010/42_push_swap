@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:17:14 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/19 15:52:04 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/24 19:07:26 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,15 @@
 // 	return (*head);
 // }
 
-int	main(int argc, char *argv[])
-{
-	t_stack	a;
-	t_stack	b;
 
-	if (argc >= 2)
-	{
-		parse_input(&a, argv);
-		parse_input(&b, argv);
-	}
-	else
-		scope_error("invalid input");
-	swap(&a);
-	check_stack(&a);
-	check_links(&a);
-	display_return(&a);
-	return (0);
-}
 
+
+	// swap(&a);
+	// push(&b, &a);
+	// push(&b, &a);
+	// check_stack(&a);
+	// check_links(&a);
+	// display_return(&a);
 //printf("\nnumber of elements %zu\n", elementcount(&a));
 //prepend(&a, 42);
 //print_stack(&b);

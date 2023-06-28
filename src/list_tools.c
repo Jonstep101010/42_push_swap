@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:35:36 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/17 20:17:36 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/24 18:35:04 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	stack_push(t_stack *stack, t_stack *popped)
 		return ;
 	}
 	popped->prev = stack->tail;
-	popped->prev->next = popped;
+	stack->tail->next = popped;
+	popped->next->prev = popped;
 	stack->head = popped;
 }

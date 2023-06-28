@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:19:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/19 15:52:36 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/28 10:36:44 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,42 @@ typedef struct t_stack
 	struct t_stack	*head;
 	struct t_stack	*tail;
 	int				data;
+	int 			index;
 	struct t_stack	*next;
 	struct t_stack	*prev;
 }	t_stack;
 
+// enum e_operations
+// {
+// 	SA,
+// 	SB,
+// 	SS,
+// 	PA,
+// 	PB,
+// 	RA,
+// 	RB,
+// 	RR,
+// 	RRA,
+// 	RRB,
+// 	RRR
+// };
+
+// typedef struct t_functions
+// {
+// 	char	*operation;
+// 	void	(*f)(t_stack *stack);
+// }	t_functions;
+// {
+// 	char			*operation;
+// 	struct t_stack	*stack_a;
+// 	struct t_stack	*stack_b;
+// 	struct t_operations	*next;
+// }	t_operations;
+
 int		main(int argc, char *argv[]);
 
 //input handling//
-t_stack	parse_input(t_stack *stack, char **argv);
+t_stack	parse_input(t_stack *stack, int argc, char **argv);
 void	populate(t_stack *stack, int new_data);
 
 //operations//
