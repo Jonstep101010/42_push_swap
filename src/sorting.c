@@ -6,14 +6,11 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 19:01:24 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/28 21:50:06 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/28 22:54:05 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-//need to still check input for duplicates
-//need to check if input is a number
 
 /*
 ** @brief sort three digits
@@ -61,23 +58,4 @@ void	sort(t_stack *a)
 	// 	sort_five(a, b);
 	// else
 	// 	sort_large(a, b);
-}
-
-int	main(int argc, char *argv[])
-{
-	t_stack	a;
-	// t_stack	b;
-
-	// a = NULL;
-	// a = ft_calloc(1, sizeof(t_stack));
-	
-	if (argc >= 2)
-		parse_input(&a, argc, argv);
-	else
-		scope_error("invalid input");
-	// check_stack(&b);
-	sort(&a);
-	// check_stack(&a);
-	display_return(&a);
-	return (0);
 }

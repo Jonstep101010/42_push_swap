@@ -6,11 +6,22 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:17:14 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/24 19:07:26 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/28 22:52:15 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	main(int argc, char *argv[])
+{
+	t_stack	a;
+	
+	if (!(argc >= 2 && parse_input(&a, argc, argv)))
+		scope_error("invalid input");
+	sort(&a);
+	display_return(&a);
+	return (0);
+}
 
 // t_stack *init_stack(t_stack **head, int data)
 // {
@@ -26,12 +37,12 @@
 
 
 
-	// swap(&a);
-	// push(&b, &a);
-	// push(&b, &a);
-	// check_stack(&a);
-	// check_links(&a);
-	// display_return(&a);
+// swap(&a);
+// push(&b, &a);
+// push(&b, &a);
+// check_stack(&a);
+// check_links(&a);
+// display_return(&a);
 //printf("\nnumber of elements %zu\n", elementcount(&a));
 //prepend(&a, 42);
 //print_stack(&b);
