@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:02:26 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/24 18:55:44 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/29 11:03:50 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	push(t_stack *to_push, t_stack *to_pop)
 	t_stack	*popnode;
 
 	popnode = pop(to_pop);
-	// ft_printf("%d\n\n", popnode->data);
 	if (popnode)
 		stack_push(to_push, popnode);
 }
+	// ft_printf("%d\n\n", popnode->data);
 
 t_stack	*pop(t_stack *to_pop)
 {
@@ -32,7 +32,6 @@ t_stack	*pop(t_stack *to_pop)
 
 	popnode = NULL;
 	ret = NULL;
-	// print_stack(to_pop);
 	if (!to_pop || !to_pop->head)
 		return (ret);
 	ret = to_pop->head;
@@ -46,6 +45,7 @@ t_stack	*pop(t_stack *to_pop)
 	to_pop->head = popnode;
 	return (ret);
 }
+	// print_stack(to_pop);
 
 //pop
 //What should be the result of popping an empty stack?
@@ -71,9 +71,9 @@ void	swap(t_stack *stack)
 
 	if (elementcount(stack) <= 1)
 		return ;
-	// if (!stack)
-	// 	scope_error("swap attempt on ZERO value");
 	tmp = stack->head->next->data;
 	stack->head->next->data = stack->head->data;
 	stack->head->data = tmp;
 }
+	// if (!stack)
+	// 	scope_error("swap attempt on ZERO value");

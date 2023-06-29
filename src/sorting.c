@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 19:01:24 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/28 22:54:05 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/29 11:02:28 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ void	sort_three(t_stack *a)
 		return ((void)rotate(a));
 }
 
-void	sort(t_stack *a)
-{
 	//sort using insertion and merge sort
 	//limit number of operations
 	//use stack b as temporary storage
 	//use stack a as the return stack (sorted) & unsorted input stack
+void	sort(t_stack *a)
+{
 	size_t	size;
+
 	size = elementcount(a);
 	if (is_sorted(a))
 		return ;
@@ -54,8 +55,8 @@ void	sort(t_stack *a)
 		swap(a);
 	else if (size <= 3)
 		sort_three(a);
+}
 	// else if (size <= 5)
 	// 	sort_five(a, b);
 	// else
 	// 	sort_large(a, b);
-}

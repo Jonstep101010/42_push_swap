@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 22:46:14 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/28 22:46:46 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/29 10:59:54 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,6 @@ bool	populate(t_stack *stack, int new_data)
 	new_item->data = new_data;
 	last = stack->head;
 	new_item->next = stack->head;
-	// if (!(stack->head))
-	// {
-	// 	new_item->prev = new_item;
-	// 	stack->head = new_item;
-	// }
 	while (last->next != stack->head)
 		last = last->next;
 	last->next = new_item;
@@ -53,3 +48,8 @@ bool	populate(t_stack *stack, int new_data)
 	stack->tail = stack->head->prev;
 	return (true);
 }
+	// if (!(stack->head))
+	// {
+	// 	new_item->prev = new_item;
+	// 	stack->head = new_item;
+	// }

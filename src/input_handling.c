@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:15:43 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/28 22:51:28 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/29 11:00:40 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ static bool	check_duplicate(t_stack *stack)
 
 /*
 ** @brief checks if input is valid
+** TODO: check for INT_MAX and INT_MIN using long
 */
 static bool	validate_input(const char *str)
 {
 	if (!int_format(str))
 		return (false);
-	if (ft_atoi(str) > INT_MAX || ft_atoi(str) < INT_MIN) //needs long format
+	if (ft_atoi(str) > INT_MAX || ft_atoi(str) < INT_MIN)
 		return (false);
-	//need to check duplicates as well
 	return (true);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:12 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/28 22:48:04 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/29 10:59:21 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,12 @@ bool	check_links(t_stack *stack)
 	if (!elementcount(stack))
 		return (ft_printf("\ncheck: Empty!\n"), false);
 	current = stack->head;
-	do {
+	while (current->next != stack->head)
+	{
 		if (current->next->prev != current)
-			return (ft_printf("\ncheck: broken link - %d (next pointer)\n", current->data), false);
+			return (ft_printf("\nbroken link - %d\n", current->data), false);
 		current = current->next;
-	}	while (current->next != stack->head);
+	}
 	return (true);
 }
 
