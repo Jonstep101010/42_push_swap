@@ -16,7 +16,7 @@ OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS		:= $(SRCS:.c=.d)
 
 CC			:= clang
-CFLAGS		:= -Wall -Wextra -Werror -g
+CFLAGS		:= -Wall -Wextra -Werror -fsanitize=address -g
 CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L,$(dir $(LIB_FT)))
 LDLIB		:= $(addprefix -l,$(LIB))
