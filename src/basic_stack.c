@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:02:26 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/29 11:03:50 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:19:52 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	push(t_stack *to_push, t_stack *to_pop)
 	popnode = pop(to_pop);
 	if (popnode)
 		stack_push(to_push, popnode);
+	// ft_printf("p%s\n", to_push);
 }
 	// ft_printf("%d\n\n", popnode->data);
 
@@ -59,6 +60,7 @@ void	swap_both(t_stack *stack_a, t_stack *stack_b)
 {
 	swap(stack_a);
 	swap(stack_b);
+	ft_printf("ss\n");
 }
 
 /*

@@ -16,6 +16,7 @@ void	rotate_both(t_stack *stack_1, t_stack *stack_)
 {
 	rotate(stack_1);
 	rotate(stack_);
+	ft_printf("rr\n");
 }
 
 /*
@@ -81,4 +82,5 @@ void	rev_rotate_both(t_stack *stack_1, t_stack *stack_2)
 {
 	rev_rotate(stack_1);
 	rev_rotate(stack_2);
+	ft_printf("rrr\n");
 }
