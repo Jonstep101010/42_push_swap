@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:12 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/29 10:59:21 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/04 12:56:19 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ bool	is_sorted(t_stack *stack)
 {
 	t_stack	*t_i;
 
+	if (!(stack->head->next))
+		return (true);
 	t_i = stack->head;
 	while (t_i->next != stack->head)
 	{

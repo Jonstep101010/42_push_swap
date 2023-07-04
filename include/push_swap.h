@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:19:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/28 22:51:52 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:52:08 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct t_stack
 	struct t_stack	*head;
 	struct t_stack	*tail;
 	int				data;
-	size_t 			elements;
 	struct t_stack	*next;
 	struct t_stack	*prev;
 }	t_stack;
@@ -65,8 +64,8 @@ typedef struct t_stack
 int		main(int argc, char *argv[]);
 
 //input handling//
-bool	parse_input(t_stack *stack, int argc, char **argv);
-bool	populate(t_stack *stack, int new_data);
+t_stack	*parse_input(int argc, char **argv);
+t_stack	*populate(t_stack *stack, int new_data);
 
 //operations//
 void	swap(t_stack *stack);

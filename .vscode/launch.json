@@ -8,11 +8,11 @@
 			"name": "(lldb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "/Users/Jonas/GitHub/projects/push-swap/push_swap",
+			"program": "/Users/jschwabe/Documents/projects/push-swap/push_swap",
 			"args": ["3 2 1"],
 			"stopAtEntry": false,
 			"environment": [],
-			"cwd": "/Users/Jonas/GitHub/projects/push-swap",
+			"cwd": "/Users/jschwabe/Documents/projects/push-swap",
 			"externalConsole": false,
 			"MIMode": "lldb"
 		}

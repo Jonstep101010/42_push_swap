@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:17:14 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/29 11:02:47 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:33:18 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,13 @@ int	main(int argc, char *argv[])
 {
 	t_stack	a;
 
-	if (!(argc >= 2 && parse_input(&a, argc, argv)))
+	if (argc >= 2)
+	{
+		a = *parse_input(argc, argv);
+		if (elementcount(&a) < 2)
+			scope_error("invalid input");
+	}
+	else
 		scope_error("invalid input");
 	sort(&a);
 	display_return(&a);

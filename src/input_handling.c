@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:15:43 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/29 11:00:40 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:26:51 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,14 @@ static bool	validate_input(const char *str)
 	return (true);
 }
 
-bool	parse_input(t_stack *stack, int argc, char **argv)
+t_stack	*parse_input(int argc, char **argv)
 {
+	t_stack	*stack;
 	char	**tmp;
 	int		i;
 	int		ii;
 
+	stack = NULL;
 	i = 0;
 	while (++i < argc)
 	{
@@ -78,16 +80,18 @@ bool	parse_input(t_stack *stack, int argc, char **argv)
 			scope_error("tmp conversion error");
 		while (tmp[++ii])
 		{
-			if (validate_input(tmp[ii]) && i == 1
-				&& populate(stack, ft_atoi(tmp[ii])))
-				stack->elements = 1;
-			else if (validate_input(tmp[ii]) && check_duplicate(stack)
-				&& populate(stack, ft_atoi(tmp[ii])))
-				stack->elements++;
+			if (ii == 0 && i == 1 && validate_input(tmp[ii]))
+			{
+				stack = populate(stack, ft_atoi(tmp[ii]));
+			}
+			else if (validate_input(tmp[ii]) && check_duplicate(stack))
+			{
+				populate(stack, ft_atoi(tmp[ii]));
+			}
 			else
 				scope_error("stack contains non-numeric values");
 		}
 		arr_free(tmp);
 	}
-	return (true);
+	return (stack);
 }
