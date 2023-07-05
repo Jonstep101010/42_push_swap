@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:19:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/05 10:39:16 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:23:53 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@
 // # define RB "rb"
 // # define RR "rr"
 
+typedef enum e_type
+{
+	A = 0,
+	B = 1,
+	AB = 2
+}t_type;
+
 typedef struct t_stack
 {
 	struct t_stack	*head;
@@ -40,12 +47,12 @@ typedef struct	t_box
 	t_stack	*b;
 }	t_box;
 
-typedef enum e_swap
-{
-	SA,
-	SB,
-	SS
-} e_swap;
+// typedef enum e_swap
+// {
+// 	SA,
+// 	SB,
+// 	SS
+// } e_swap;
 
 // enum e_operations
 // {
@@ -81,13 +88,13 @@ t_stack	*parse_input(int argc, char **argv);
 t_stack	*populate(t_stack *stack, int new_data);
 
 //operations//
-void	swap(t_stack *stack);
+void	swap(t_stack *stack, t_type type);
 void	swap_both(t_stack *stack_a, t_stack *stack_b);
 void	push(t_stack *to_push, t_stack *to_pop);
 t_stack	*pop(t_stack *to_pop);
-void	rotate(t_stack *stack);
+void	rotate(t_stack *stack, t_type type);
 void	rotate_both(t_stack *stack_1, t_stack *stack_2);
-void	rev_rotate(t_stack *stack);
+void	rev_rotate(t_stack *stack, t_type type);
 void	rev_rotate_both(t_stack *stack_1, t_stack *stack_2);
 
 //list functions//
@@ -96,8 +103,8 @@ void	prepend(t_stack *stack, int new_data);
 void	stack_push(t_stack *stack, t_stack *popped);
 
 //stack sorting//
-void	sort(t_stack *a);
-void	sort_three(t_stack *a);
+void	sort(t_stack *a, t_type type);
+void	sort_three(t_stack *a, t_type type);
 
 /*list checking*/
 

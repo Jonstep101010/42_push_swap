@@ -64,6 +64,17 @@ re:
 run: re
 	-./$(NAME)
 
+three:
+	$(MAKE)
+	-./$(NAME) "1 2 3" && echo "- - -"
+	-./$(NAME) "3 2" 1 && echo "- - -"
+	-./$(NAME) "3" 1 2 && echo "- - -"
+	-./$(NAME) 1 3 2 && echo "- - -"
+	-./$(NAME) 2 1 3 && echo "- - -"
+	-./$(NAME) 2 3 1 && echo "- - -"
+	-./$(NAME) 2 3 1 4 && grep "error"
+	
+
 upgrade:
 	$(MAKE) update
 	$(MAKE) run

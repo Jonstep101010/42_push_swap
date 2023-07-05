@@ -14,8 +14,8 @@
 
 void	rotate_both(t_stack *stack_1, t_stack *stack_)
 {
-	rotate(stack_1);
-	rotate(stack_);
+	rotate(stack_1, AB);
+	rotate(stack_, AB);
 	ft_printf("rr\n");
 }
 
@@ -25,7 +25,7 @@ void	rotate_both(t_stack *stack_1, t_stack *stack_)
 ** old head becomes new tail, new tail prev is old tail
 ** @param stack 
 */
-void	rotate(t_stack *stack)
+void	rotate(t_stack *stack, t_type type)
 {
 	t_stack	*tmp;
 
@@ -39,7 +39,13 @@ void	rotate(t_stack *stack)
 	stack->head = tmp->next;
 	stack->head->next = tmp->next->next;
 	stack->head->prev = stack->tail;
-	check_stack(stack);
+	if (type == A)
+		ft_printf("ra\n");
+	else if (type == B)
+		ft_printf("rb\n");
+	else
+		return;
+
 }
 	// ft_printf("\nold head %d\n", stack->head->prev->data);
 	// ft_printf("\nold tail %d\n", stack->tail->prev->data);
@@ -55,7 +61,7 @@ void	rotate(t_stack *stack)
 ** old tail prev becomes new tail, tail next is old tail
 ** @param stack 
 */
-void	rev_rotate(t_stack *stack)
+void	rev_rotate(t_stack *stack, t_type type)
 {
 	t_stack	*tmp;
 
@@ -69,7 +75,12 @@ void	rev_rotate(t_stack *stack)
 	stack->tail = tmp->prev;
 	stack->tail->prev = tmp->prev->prev;
 	stack->tail->next = stack->head;
-	check_stack(stack);
+	if (type == A)
+		ft_printf("rra\n");
+	else if (type == B)
+		ft_printf("rrb\n");
+	else
+		return;
 }
 
 	// ft_printf("\nold head %d\n", stack->head->next->data);
@@ -80,7 +91,7 @@ void	rev_rotate(t_stack *stack)
 	// ft_printf("\nnew head %d\n", stack->head->next->prev->data);
 void	rev_rotate_both(t_stack *stack_1, t_stack *stack_2)
 {
-	rev_rotate(stack_1);
-	rev_rotate(stack_2);
+	rev_rotate(stack_1, AB);
+	rev_rotate(stack_2, AB);
 	ft_printf("rrr\n");
 }
