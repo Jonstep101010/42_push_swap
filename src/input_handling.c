@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:15:43 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/04 14:26:51 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/05 09:35:08 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,10 @@ t_stack	*parse_input(int argc, char **argv)
 			scope_error("tmp conversion error");
 		while (tmp[++ii])
 		{
-			if (ii == 0 && i == 1 && validate_input(tmp[ii]))
-			{
+			if (i == 1 && validate_input(tmp[ii]))
 				stack = populate(stack, ft_atoi(tmp[ii]));
-			}
 			else if (validate_input(tmp[ii]) && check_duplicate(stack))
-			{
 				populate(stack, ft_atoi(tmp[ii]));
-			}
 			else
 				scope_error("stack contains non-numeric values");
 		}
