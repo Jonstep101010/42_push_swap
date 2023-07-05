@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:19:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/04 13:52:08 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/05 10:39:16 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 # include "libft.h"
 # include <stdbool.h>
 
-# define SA "sa"
-# define SB "sb"
-# define SS "ss"
-# define PA "pa"
-# define PB "pb"
-# define RA "ra"
-# define RB "rb"
-# define RR "rr"
+// # define SA "sa"
+// # define SB "sb"
+// # define SS "ss"
+// # define PA "pa"
+// # define PB "pb"
+// # define RA "ra"
+// # define RB "rb"
+// # define RR "rr"
 
 typedef struct t_stack
 {
@@ -33,6 +33,19 @@ typedef struct t_stack
 	struct t_stack	*next;
 	struct t_stack	*prev;
 }	t_stack;
+
+typedef struct	t_box
+{
+	t_stack	*a;
+	t_stack	*b;
+}	t_box;
+
+typedef enum e_swap
+{
+	SA,
+	SB,
+	SS
+} e_swap;
 
 // enum e_operations
 // {
