@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 19:01:24 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/05 13:31:42 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/05 19:00:39 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,67 @@ void	sort_three(t_stack *a, t_type type)
 		return ((void)rotate(a, type));
 }
 
+void	sort_five(t_box *stacks)
+{
+	push(stacks, B);
+	print_stack(stacks->a);
+	// print_stack_rev(stacks->a);
+	// check_links(stacks->a);
+	print_stack(stacks->b);
+	// push(*stacks, B);
+	// push(stacks->b, stacks->a, B);
+	// sort_three(stacks->a, A);
+	// push(*stacks, A);
+	// while (!is_sorted(stacks->a))
+	// 	rotate(stacks->a, A);
+	// push(*stacks, A);
+	// while (!is_sorted(stacks->a))
+	// 	rotate(stacks->a, A);	
+}
+
 	//sort using insertion and merge sort
 	//limit number of operations
 	//use stack b as temporary storage
 	//use stack a as the return stack (sorted) & unsorted input stack
-void	sort(t_stack *a, t_type type)
+void	sort(t_box *stacks, t_type type)
 {
 	size_t	size;
 
-	size = elementcount(a);
-	if (is_sorted(a))
-		return ;
+	size = elementcount(stacks->a);
+	// if (is_sorted(stacks->a))
+	// 	return ;
 	if (size == 2)
-		swap(a, type);
-	else if (size <= 3)
-		sort_three(a, type);
-	if (!is_sorted(a))
-		scope_error("not sorted: sorting incorrect");
+		swap(stacks->a, type);
+	// else if (size <= 3)
+	// 	sort_three(stacks->a, type);
+	if (size == 5)
+		sort_five(stacks);
+	// if (!is_sorted(stacks->a))
+	// 	scope_error("not sorted: sorting incorrect");
 }
+
+int	main(int argc, char *argv[])
+{
+	t_box	stacks;
+	t_type	type;
+	type = A;
+	
+
+	if (argc >= 2)
+	{
+		stacks.a = parse_input(argc, argv);
+		if (elementcount(stacks.a) < 2)
+			scope_error("invalid input");
+	}
+	else
+		scope_error("invalid input");
+	display_return(stacks.a);
+	sort(&stacks, type);
+	display_return(stacks.a);
+	display_return(stacks.b);
+	return (0);
+}
+
 	// else if (size <= 5)
 	// 	sort_five(a, b);
 	// else

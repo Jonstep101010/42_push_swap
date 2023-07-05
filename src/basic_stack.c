@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:02:26 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/05 13:05:13 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/05 19:03:51 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,6 @@
 //push
 //What should push with NULL be?
 //do nothing
-void	push(t_stack *to_push, t_stack *to_pop)
-{
-	t_stack	*popnode;
-
-	popnode = pop(to_pop);
-	if (popnode)
-		stack_push(to_push, popnode);
-	// ft_printf("p%s\n", to_push);
-}
-	// ft_printf("%d\n\n", popnode->data);
 
 t_stack	*pop(t_stack *to_pop)
 {
@@ -37,15 +27,42 @@ t_stack	*pop(t_stack *to_pop)
 		return (ret);
 	ret = to_pop->head;
 	popnode = to_pop->head;
+	
 	popnode->prev = to_pop->tail;
 	popnode = to_pop->head->next;
-	popnode->next = to_pop->head->next->next;
+	
+	popnode->next->prev = to_pop->head;
 	to_pop->head->next->next->prev = popnode;
 	to_pop->tail->next = popnode;
 	popnode->next->prev = to_pop->tail;
 	to_pop->head = popnode;
 	return (ret);
 }
+
+void	push(t_box *stacks, t_type type)
+{
+	t_stack	*popnode;
+	if (type == B)
+	{
+		popnode = pop(stacks->a);
+		if (!stacks->b->head)
+		{
+			stacks->b->head = popnode;
+			stacks->b->tail = popnode;
+			popnode->prev = popnode;
+			popnode->next = popnode;
+		}
+		else
+		{
+			//
+		}
+		
+		
+		ft_printf("pb\n");
+	}
+}
+	// ft_printf("%d\n\n", popnode->data);
+
 	// print_stack(to_pop);
 
 //pop

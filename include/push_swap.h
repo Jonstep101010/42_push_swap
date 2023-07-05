@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:19:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/05 13:23:53 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/05 19:02:05 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,7 @@ t_stack	*populate(t_stack *stack, int new_data);
 //operations//
 void	swap(t_stack *stack, t_type type);
 void	swap_both(t_stack *stack_a, t_stack *stack_b);
-void	push(t_stack *to_push, t_stack *to_pop);
-t_stack	*pop(t_stack *to_pop);
+void	push(t_box *stacks, t_type type);
 void	rotate(t_stack *stack, t_type type);
 void	rotate_both(t_stack *stack_1, t_stack *stack_2);
 void	rev_rotate(t_stack *stack, t_type type);
@@ -100,10 +99,9 @@ void	rev_rotate_both(t_stack *stack_1, t_stack *stack_2);
 //list functions//
 void	append(t_stack *stack, int new_data);
 void	prepend(t_stack *stack, int new_data);
-void	stack_push(t_stack *stack, t_stack *popped);
 
 //stack sorting//
-void	sort(t_stack *a, t_type type);
+void	sort(t_box *stacks, t_type type);
 void	sort_three(t_stack *a, t_type type);
 
 /*list checking*/
