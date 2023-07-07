@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:54:35 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/29 11:03:18 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:18:03 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 */
 void	print_stack(t_stack *stack)
 {
-	t_stack	*t_i;
+	t_node	*t_i;
 
 	if (!stack->head)
 		return ((void)ft_printf("\n!EMPTY/BROKEN!\n"));
@@ -46,7 +46,7 @@ void	print_stack(t_stack *stack)
 
 void	print_stack_rev(t_stack *stack)
 {
-	t_stack	*t_i;
+	t_node	*t_i;
 
 	if (!stack->tail)
 		return ((void)ft_printf("\n!EMPTY/BROKEN!\n"));

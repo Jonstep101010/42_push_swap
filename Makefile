@@ -9,7 +9,11 @@ BUILD_DIR	:= .build
 DIR_MK		 = mkdir -p $(@D)
 
 SRC_DIR		:= src
-SRC			:= sorting.c
+SRC			:= push_swap.c \
+				sorting.c input_handling.c error.c \
+				push.c rotate.c swap.c \
+				checks.c \
+				printing.c
 SRCS		:= $(addprefix $(SRC_DIR)/,$(SRC))
 
 OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)

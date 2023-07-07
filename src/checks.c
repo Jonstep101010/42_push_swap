@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:12 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/04 12:56:19 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:17:16 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 */
 bool	is_sorted(t_stack *stack)
 {
-	t_stack	*t_i;
+	t_node	*t_i;
 
 	if (!(stack->head->next))
 		return (true);
@@ -38,7 +38,7 @@ bool	is_sorted(t_stack *stack)
 */
 bool	check_links(t_stack *stack)
 {
-	t_stack	*current;
+	t_node	*current;
 
 	if (!elementcount(stack))
 		return (ft_printf("\ncheck: Empty!\n"), false);
@@ -58,8 +58,8 @@ bool	check_links(t_stack *stack)
 */
 bool	check_stack(t_stack *stack)
 {
-	t_stack	*head;
-	t_stack	*tail;
+	t_node	*head;
+	t_node	*tail;
 
 	head = stack->head;
 	tail = stack->tail;
@@ -79,24 +79,4 @@ bool	check_stack(t_stack *stack)
 	return (true);
 }
 
-/*
-** @brief checks if stack is empty, counts elements
-*/
-size_t	elementcount(t_stack *stack)
-{
-	t_stack	*t_i;
-	size_t	i;
 
-	if (!stack || !stack->head)
-		return (0);
-	if (stack->head == stack->tail)
-		return (1);
-	t_i = stack->head->next;
-	i = 2;
-	while (t_i->next != stack->head)
-	{
-		t_i = t_i->next;
-		i++;
-	}
-	return (i);
-}

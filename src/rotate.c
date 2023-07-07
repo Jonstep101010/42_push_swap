@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate_stack.c                                     :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschwabe <jschwabe@student.4.fr>          +#+  +:+       +#+        */
+/*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 03/06/19 1:47:5 by jschwabe          #+#    #+#             */
-/*   Updated: 03/06/19 1:51:14 by jschwabe         ###   ########.fr       */
+/*   Created: 2023/07/07 17:07:07 by jschwabe          #+#    #+#             */
+/*   Updated: 2023/07/07 18:14:59 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate_both(t_stack *stack_1, t_stack *stack_)
+void	rotate_both(t_box *box)
 {
-	rotate(stack_1, AB);
-	rotate(stack_, AB);
+	rotate(&(box->a), AB);
+	rotate(&(box->b), AB);
 	ft_printf("rr\n");
 }
 
@@ -27,7 +27,7 @@ void	rotate_both(t_stack *stack_1, t_stack *stack_)
 */
 void	rotate(t_stack *stack, t_type type)
 {
-	t_stack	*tmp;
+	t_node	*tmp;
 
 	if (elementcount(stack) <= 1)
 		return ;
@@ -63,7 +63,7 @@ void	rotate(t_stack *stack, t_type type)
 */
 void	rev_rotate(t_stack *stack, t_type type)
 {
-	t_stack	*tmp;
+	t_node	*tmp;
 
 	if (elementcount(stack) <= 1)
 		return ;
@@ -83,15 +83,16 @@ void	rev_rotate(t_stack *stack, t_type type)
 		return;
 }
 
-	// ft_printf("\nold head %d\n", stack->head->next->data);
-	// ft_printf("\nold tail %d\n", stack->tail->next->data);
-	// ft_printf("\nnew tail %d\n", stack->tail->prev->next->data);
-	// ft_printf("\nnew tail %d\n", stack->tail->next->prev->data);
-	// ft_printf("\nnew head %d\n", stack->tail->next->data);
-	// ft_printf("\nnew head %d\n", stack->head->next->prev->data);
-void	rev_rotate_both(t_stack *stack_1, t_stack *stack_2)
+// 	// ft_printf("\nold head %d\n", stack->head->next->data);
+// 	// ft_printf("\nold tail %d\n", stack->tail->next->data);
+// 	// ft_printf("\nnew tail %d\n", stack->tail->prev->next->data);
+// 	// ft_printf("\nnew tail %d\n", stack->tail->next->prev->data);
+// 	// ft_printf("\nnew head %d\n", stack->tail->next->data);
+// 	// ft_printf("\nnew head %d\n", stack->head->next->prev->data);
+
+void	rev_rotate_both(t_box *box)
 {
-	rev_rotate(stack_1, AB);
-	rev_rotate(stack_2, AB);
+	rev_rotate(&(box->a), AB);
+	rev_rotate(&(box->b), AB);
 	ft_printf("rrr\n");
 }
