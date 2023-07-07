@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:15:43 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/05 09:35:08 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:34:32 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,55 @@ static bool	validate_input(const char *str)
 	return (true);
 }
 
-t_stack	*parse_input(int argc, char **argv)
+t_stack	*create_head(t_stack *stack)
+{
+	t_stack	*new_head;
+
+	new_head = malloc(sizeof(t_stack));
+	new_head->next = new_head;
+	new_head->prev = new_head;
+	stack->head = new_head;
+	return (stack);
+}
+
+void	populate(t_stack stack, int new_data)
+{
+	t_stack	*last;
+
+	if (!stack.head)
+	{
+		stack.head = malloc(sizeof(t_stack));
+		stack.head->data = new_data;
+		stack.head->next = stack.head;
+		stack.head->prev = stack.head;
+		stack.tail = stack.head;
+		stack.type = A;
+		return;
+	}
+	// new_item = malloc(sizeof(t_stack));
+	// new_item->data = new_data;
+	// last = stack->head;
+	// if (stack->head == stack->tail)
+	// {
+	// 	stack->tail = new_item;
+	// 	stack->tail->prev = stack->head;
+	// 	stack->tail->next = stack->head;
+	// 	stack->head->next = stack->tail;
+	// 	stack->head->prev = stack->tail;
+	// 	return (stack);
+	// }
+	// while (last->next != stack->head)
+	// 	last = last->next;
+	// stack->tail = new_item;
+	// stack->tail->data = new_data;
+	// stack->tail->prev = last;
+	// stack->tail->prev->next = stack->tail;
+	// stack->tail->next = stack->head;
+	// stack->tail->next->prev = stack->tail;
+	// return (stack);
+}
+
+void	parse_input(t_box box, int argc, char **argv)
 {
 	t_stack	*stack;
 	char	**tmp;
@@ -80,12 +128,12 @@ t_stack	*parse_input(int argc, char **argv)
 			scope_error("tmp conversion error");
 		while (tmp[++ii])
 		{
-			if (i == 1 && validate_input(tmp[ii]))
-				stack = populate(stack, ft_atoi(tmp[ii]));
-			else if (validate_input(tmp[ii]) && check_duplicate(stack))
-				populate(stack, ft_atoi(tmp[ii]));
-			else
-				scope_error("stack contains non-numeric values");
+			// if (i == 1 && validate_input(tmp[ii]))
+			populate(box.a, ft_atoi(tmp[ii]));
+			// else if (validate_input(tmp[ii]) && check_duplicate(stack))
+			// 	populate(stack, ft_atoi(tmp[ii]));
+			// else
+			// 	scope_error("stack contains non-numeric values");
 		}
 		arr_free(tmp);
 	}

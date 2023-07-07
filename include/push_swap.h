@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:19:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/05 19:02:05 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/07 10:02:15 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,6 @@
 # include "libft.h"
 # include <stdbool.h>
 
-// # define SA "sa"
-// # define SB "sb"
-// # define SS "ss"
-// # define PA "pa"
-// # define PB "pb"
-// # define RA "ra"
-// # define RB "rb"
-// # define RR "rr"
-
 typedef enum e_type
 {
 	A = 0,
@@ -32,92 +23,74 @@ typedef enum e_type
 	AB = 2
 }t_type;
 
-typedef struct t_stack
-{
-	struct t_stack	*head;
-	struct t_stack	*tail;
-	int				data;
-	struct t_stack	*next;
-	struct t_stack	*prev;
-}	t_stack;
-
-typedef struct	t_box
-{
-	t_stack	*a;
-	t_stack	*b;
-}	t_box;
-
-// typedef enum e_swap
+// struct s_node 
 // {
-// 	SA,
-// 	SB,
-// 	SS
-// } e_swap;
-
-// enum e_operations
-// {
-// 	SA,
-// 	SB,
-// 	SS,
-// 	PA,
-// 	PB,
-// 	RA,
-// 	RB,
-// 	RR,
-// 	RRA,
-// 	RRB,
-// 	RRR
+// 	int				data;
+// 	struct s_node	*next;
+// 	struct s_node	*prev;
 // };
 
-// typedef struct t_functions
-// {
-// 	char	*operation;
-// 	void	(*f)(t_stack *stack);
-// }	t_functions;
-// {
-// 	char			*operation;
-// 	struct t_stack	*stack_a;
-// 	struct t_stack	*stack_b;
-// 	struct t_operations	*next;
-// }	t_operations;
+// typedef	struct s_node t_node;
+
+// typedef int t_integer;
+// t_integer number = 0;
+
+typedef struct s_node
+{
+	int				data;
+	struct s_node	*next;
+	struct s_node	*prev;
+}	t_node;
+
+typedef struct s_stack
+{
+	struct s_node	*head;
+	struct s_node	*tail;
+	int				type;
+}	t_stack;
+
+typedef struct s_box
+{
+	struct s_stack	a;
+	struct s_stack	b;
+}	t_box;
 
 int		main(int argc, char *argv[]);
 
 //input handling//
-t_stack	*parse_input(int argc, char **argv);
-t_stack	*populate(t_stack *stack, int new_data);
+// void	parse_input(t_box box, int argc, char **argv);
 
-//operations//
-void	swap(t_stack *stack, t_type type);
-void	swap_both(t_stack *stack_a, t_stack *stack_b);
-void	push(t_box *stacks, t_type type);
-void	rotate(t_stack *stack, t_type type);
-void	rotate_both(t_stack *stack_1, t_stack *stack_2);
-void	rev_rotate(t_stack *stack, t_type type);
-void	rev_rotate_both(t_stack *stack_1, t_stack *stack_2);
+// //operations//
+// void	swap(t_stack *stack, t_type type);
+// void	swap_both(t_stack *stack_a, t_stack *stack_b);
+// void	push(t_box *stacks, t_type type);
+// void	rotate(t_stack *stack, t_type type);
+// void	rotate_both(t_stack *stack_1, t_stack *stack_2);
+// void	rev_rotate(t_stack *stack, t_type type);
+// void	rev_rotate_both(t_stack *stack_1, t_stack *stack_2);
 
-//list functions//
-void	append(t_stack *stack, int new_data);
-void	prepend(t_stack *stack, int new_data);
+// //list functions//
+// void	append(t_stack *stack, int new_data);
+// void	prepend(t_stack *stack, int new_data);
 
-//stack sorting//
-void	sort(t_box *stacks, t_type type);
-void	sort_three(t_stack *a, t_type type);
+// //stack sorting//
+// void	sort(t_box *stacks, t_type type);
+// void	sort_three(t_stack *a, t_type type);
 
-/*list checking*/
+// /*list checking*/
 
-void	print_stack(t_stack *stack);
-void	print_stack_rev(t_stack *stack);
-bool	check_stack(t_stack *stack);
-size_t	elementcount(t_stack *stack);
-bool	check_links(t_stack *stack);
-bool	is_sorted(t_stack *stack);
+// void	print_stack(t_stack *stack);
+// void	print_stack_rev(t_stack *stack);
+// bool	check_stack(t_stack *stack);
+// size_t	elementcount(t_stack *stack);
+// bool	check_links(t_stack *stack);
+// bool	is_sorted(t_stack *stack);
 
-//error handling//
-void	scope_error(char *msg);
-void	scope_success(char *msg, t_stack *stack);
+// //error handling//
+// void	scope_error(char *msg);
+// void	scope_success(char *msg, t_stack *stack);
 
-//return values//
-void	display_return(t_stack *a);
+// //return values//
+// void	display_return(t_stack *a);
 // void	display_operations()
 #endif

@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:02:26 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/05 19:03:51 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:34:10 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,70 @@
 t_stack	*pop(t_stack *to_pop)
 {
 	t_stack	*popnode;
-	t_stack	*ret;
+	// t_stack	*ret;
+	// ret = NULL;
+	// ret = malloc(sizeof(t_stack));
 
-	popnode = NULL;
-	ret = NULL;
 	if (!to_pop || !to_pop->head)
-		return (ret);
-	ret = to_pop->head;
-	popnode = to_pop->head;
+		return (NULL);
+	popnode = stacks.a
+	// if (!ret)
+	// 	scope_error("alloc fail in pop");
+	// popnode = to_pop->head;
+	if (to_pop->head == to_pop->tail)
+	{
+		to_pop->head =  NULL;
+		to_pop->tail = NULL;
+	}
+	else
+	{
+		to_pop->head = to_pop->head->next;
+		to_pop->head->prev = to_pop->tail;
+		to_pop->tail->next = to_pop->head;
+	}
+	popnode->next = NULL;
+	popnode->prev = NULL;
+	// popnode->prev = to_pop->tail;
+	// popnode = to_pop->head->next;
 	
-	popnode->prev = to_pop->tail;
-	popnode = to_pop->head->next;
-	
-	popnode->next->prev = to_pop->head;
-	to_pop->head->next->next->prev = popnode;
-	to_pop->tail->next = popnode;
-	popnode->next->prev = to_pop->tail;
-	to_pop->head = popnode;
-	return (ret);
+	// popnode->next->prev = to_pop->head;
+	// to_pop->head->next->next->prev = popnode;
+	// to_pop->tail->next = popnode;
+	// popnode->prev = to_pop->tail;
+	// ret = to_pop->head;
+	// to_pop->head = popnode;
+	return (popnode);
 }
 
 void	push(t_box *stacks, t_type type)
 {
 	t_stack	*popnode;
+	popnode = NULL;
+	
 	if (type == B)
 	{
 		popnode = pop(stacks->a);
+		printf("%d", popnode->data);
+		print_stack(stacks->a);
+		// printf("%d", popnode->data);
+		stacks->b = popnode;
+		popnode->head = popnode;
+		popnode->tail = popnode;
+		popnode->next = popnode;
+		popnode->prev = popnode;
+		stacks->a->head = stacks->a.head->data;
+		
+		// printf("\n%d", popnode->next->data);
+		// printf("\n%d", popnode->prev->data);
+		// stacks->b->next = stacks->b;
+		// stacks->b->prev = stacks->b;
+		
+		// stacks->b->tail = stacks->b;
+		// stacks->b->head = stacks->b;
+		print_stack(stacks->b);
+		print_stack(stacks->a);
 		if (!stacks->b->head)
 		{
-			stacks->b->head = popnode;
-			stacks->b->tail = popnode;
-			popnode->prev = popnode;
-			popnode->next = popnode;
 		}
 		else
 		{
