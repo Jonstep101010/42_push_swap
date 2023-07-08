@@ -6,11 +6,14 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 19:01:24 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/07 19:08:20 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/08 19:53:39 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+size_t	index_box(t_box *box);
+void	print_index(t_box *box);
 
 /*
 ** @brief checks if stack is empty, counts elements
@@ -34,16 +37,33 @@ size_t	elementcount(t_stack *stack)
 	return (i);
 }
 
-// char	type(int type)
-// {
-// 	if (type == A)
-// 		return ('a');
-// 	else if (type == B)
-// 		return ('b');
-// 	else
-// 		return ('n');
-// }
+size_t	index_box(t_box *box)
+{
+	size_t	size;
+	int		i;
+	t_node	*current;
+	t_node	*tmp;
 
+	size = elementcount(&(box->a));
+	current = box->a.head;
+	box->a.tail->next = NULL;
+	while (current)
+	{
+		i = 1;
+		tmp = box->a.head;
+		while (tmp)
+		{
+			if (current->data > tmp->data)
+				i++;
+			tmp = tmp->next;
+		}
+		current->index = i;
+		current = current->next;
+	}
+	box->a.tail->next = box->a.head;
+	print_index(box);
+	return (size);
+}
 
 /*
 ** @brief sort three digits
@@ -61,7 +81,7 @@ void	sort_three(t_stack *stack)
 	hd = stack->head->data;
 	tl = stack->tail->data;
 	md = stack->head->next->data;
-	if (hd < md && md < tl)
+	if (is_sorted(stack))
 		return;
 	if (hd > md && hd > tl)
 	{
@@ -77,28 +97,84 @@ void	sort_three(t_stack *stack)
 		return ((void)rotate(stack, type));
 }
 
+
+
 void	sort_five(t_box *box)
 {
+	print_stack(&(box->a));
+	print_stack_rev(&(box->a));
 	push(box, B);
+	print_stack(&(box->a));
+	print_stack_rev(&(box->a));
 	push(box, B);
-	// print_stack(stacks->box.a);
-	// print_stack_rev(stacks->box.a);
-	// print_stack_rev(stacks->box.a);
-	// check_links(stacks->box.a);
-	// print_stack(stacks->b);
-	// push(*stacks, B);
-	// push(stacks->b, stacks->box.a, B);
-	sort_three(&(box->a));
+	print_stack(&(box->a));
+	print_stack_rev(&(box->a));
+	if (is_sorted(&(box->b)))
+		swap(&(box->b), B);
+	sort_three(&box->a);
+	print_stack(&(box->a));
+	print_stack_rev(&(box->a));
 	push(box, A);
-	while (!is_sorted(&(box->a)))
-		rotate(&(box->a), A);
+	print_stack(&(box->a));
+	print_stack_rev(&(box->a));
+	// while (!is_sorted(&box->a))
+	// 	rotate(&(box->a), A);
+	print_stack(&(box->a));
+	print_stack_rev(&(box->a));
 	push(box, A);
-	while (!is_sorted(&(box->a)))
-		rotate(&(box->a), A);
-	// push(*stacks, A);
-	// while (!is_sorted(stacks->box.a))
-	// 	rotate(stacks->box.a, A);	
+	print_stack(&(box->a));
+	print_stack_rev(&(box->a));
+	// if (box->a.head->index < box->a.tail->index)
+	// if (box->a.head->index > box->a.tail->index)
+	// 	rotate(&(box->a), A);
+	size_t	counter = 1;
+	t_node	*pushed;
+	pushed = box->a.head;
+	while (pushed->index > pushed->prev->index)
+	{
+		pushed = pushed->prev;
+		counter++;
+	}
+	if (box->a.tail->data < box->a.head->next->data)
+	{
+		rev_rotate(&(box->a), A);
+		swap(&(box->a), A);
+		rev_rotate(&(box->a), A);
+		rev_rotate(&(box->a), A);
+		
+	}
+	printf("%zu", counter);
+	// if (counter >= (elementcount(&(box->a)) / 2) -1)
+	// {
+	// 	while (counter--)
+	// 		rev_rotate(&(box->a), A);
+	// }
+	// else
+	// {
+	// 	while (counter--)
+	// 		rotate(&(box->a), A);
+	// }
+	
+	
+	print_stack(&(box->a));
+	print_stack_rev(&(box->a));
+	if (!is_sorted(&(box->a)))
+		scope_error("not sorted: algo");
 }
+
+void	print_index(t_box *box)
+{
+	t_node	*current;
+	current = box->a.head;
+	while (current->next != box->a.head)
+	{
+		ft_printf("\nindex[%d] %d\n", current->index, current->data);
+		if (current->next == box->a.tail)
+			ft_printf("\nindex[%d] %d\n", current->next->index, current->next->data);
+		current = current->next;
+	}
+}
+
 
 	// sort using insertion and merge sort
 	// limit number of operations
@@ -108,7 +184,7 @@ void	sort(t_box *box)
 {
 	size_t	size;
 
-	size = elementcount(&(box->a));
+	size = index_box(box);
 	if (is_sorted(&(box->a)))
 		return ;
 	if (size == 2)
@@ -173,17 +249,18 @@ int	main(int argc, char *argv[])
 	// }
 	// printf("\n(head) %d\n", box.a.head->data);
 	// printf("\n(tail) %d\n", box.a.tail->data);
-	ft_printf("\n[head] %d", box.a.head->data);
-	ft_printf("\n[next] %d", box.a.head->next->data);
-	ft_printf("\n[tail] %d", box.a.tail->data);
-	print_stack(&(box.a));
-	print_stack_rev(&(box.a));
+	// ft_printf("\n[head] %d", box.a.head->data);
+	// ft_printf("\n[next] %d", box.a.head->next->data);
+	// ft_printf("\n[tail] %d", box.a.tail->data);
+	// print_stack(&(box.a));
+	// print_stack_rev(&(box.a));
 	// printf("\nbox.b.head %d", box.b.head->data);
 	// push(&box, A);
 	// printf("\n(head) %d\n", box.a.head->data);
 	// printf("\n(tail) %d\n", box.a.tail->data);
 	// if (box.b.head)
 	// 	printf("\nbox.b.head %d", box.b.head->data);
+	// print_stack(&(box.a));
 	return (0);
 }
 

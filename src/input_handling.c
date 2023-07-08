@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:15:43 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/07 15:12:11 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/08 10:46:15 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@
 static bool	check_duplicate(t_stack *box)
 {
 	t_node	*t_i;
-	t_i = NULL;
 	t_i = box->head;
-	while (t_i->next != t_i)
+	while (t_i->next != box->head)
 	{
 		if (t_i->data == t_i->next->data)
 			return (scope_error("stack contains duplicate values"), false);

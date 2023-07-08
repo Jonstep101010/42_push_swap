@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:19:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/07 18:32:22 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/08 15:16:32 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef enum e_type
 
 typedef struct s_node
 {
+	int				index; 
 	int				data;
 	struct s_node	*next;
 	struct s_node	*prev;

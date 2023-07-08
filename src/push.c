@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 16:03:44 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/07 18:38:10 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/08 12:56:31 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_node	*pop(t_stack *to_pop)
 	else
 	{
 		to_pop->head = to_pop->head->next;
-		to_pop->head->prev = to_pop->head;
+		to_pop->head->prev = to_pop->tail;
 		to_pop->tail->next = to_pop->head;
 	}
 	pop->next = NULL;
@@ -71,7 +71,6 @@ void	push(t_box *box, t_type type)
 	}
 	else if (type == A)
 	{
-		ft_printf("\npb");
 		popped = pop(&(box->b));
 		if (!&(box->a) || !box->a.head)
 		{
@@ -99,5 +98,6 @@ void	push(t_box *box, t_type type)
 			box->a.tail->next = popped;
 			box->a.head = popped;
 		}
+		ft_printf("pa\n");
 	}
 }
