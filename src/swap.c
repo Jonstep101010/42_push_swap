@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:02:26 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/07 17:52:08 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/09 17:27:50 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ void	swap(t_stack *stack, t_type type)
 	tmp = stack->head->next->data;
 	stack->head->next->data = stack->head->data;
 	stack->head->data = tmp;
+	tmp = stack->head->next->index;
+	stack->head->next->index = stack->head->index;
+	stack->head->index = tmp;
 	if (type == A)
 		ft_printf("sa\n");
 	else if (type == B)

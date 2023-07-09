@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:19:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/08 15:16:32 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/09 18:00:20 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,19 @@ void	swap_both(t_stack *stack_a, t_stack *stack_b);
 
 // //stack sorting//
 size_t	elementcount(t_stack *stack);
-// void	sort(t_box *stacks, t_type type);
+size_t	index_box(t_box *box);
+
+void	sort(t_box *box);
 void	sort_three(t_stack *stack);
+void	sort_five(t_box *box);
 
 // /*list checking*/
 
 void	print_stack(t_stack *stack);
 void	print_stack_rev(t_stack *stack);
+void	print_index(t_stack *stack);
+
+size_t	elementcount(t_stack *stack);
 bool	check_stack(t_stack *stack);
 bool	is_sorted(t_stack *stack);
 // size_t	elementcount(t_stack *stack);
