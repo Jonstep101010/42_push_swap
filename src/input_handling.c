@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:15:43 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/08 10:46:15 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:50:58 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,6 @@ static bool	check_duplicate(t_stack *box)
 void	populate(t_box *box, int new_data)
 {
 	t_node	*new;
-	new = NULL;
-	static int i = 0;
-	printf("[%d] %d\n", i, new_data);
-	i++;
 	new = ft_calloc(1, sizeof(t_node));
 	new->data = new_data;
 	if (!(box->a.head))
@@ -42,21 +38,18 @@ void	populate(t_box *box, int new_data)
 		new->next = new;
 		new->prev = new;
 		box->a.head = new;
-		box->a.tail = new;
+		// box->a.tail = new;
 		box->a.type = A;
-		return;
 	}
-	// a = &(box->a);
 	else if ((box->a.head) == (box->a.tail))
 	{
 		new->next = box->a.head;
 		box->a.head->prev = new;
 		box->a.head->next = new;
 		new->prev = box->a.head;
-		box->a.tail = new;
-		box->a.tail->next = box->a.head;
-		box->a.tail->prev = box->a.head;
-		return;
+		// box->a.tail = new;
+		// box->a.tail->next = box->a.head;
+		// box->a.tail->prev = box->a.head;
 	}
 	else
 	{
@@ -64,9 +57,9 @@ void	populate(t_box *box, int new_data)
 		box->a.tail->next = new;
 		new->prev = box->a.tail;
 		new->next = box->a.head;
-		box->a.tail = new;
-		return;
+		// box->a.tail = new;
 	}
+	box->a.tail = new;
 }
 
 /*

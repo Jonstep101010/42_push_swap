@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 16:03:44 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/08 12:56:31 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/10 13:31:52 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ void	push(t_box *box, t_type type)
 		}
 		else if (box->b.head == box->b.tail)
 		{
-			popped->next = box->b.head;
-			box->b.head->prev = popped;
-			box->b.head->next = popped;
-			popped->prev = box->b.head;
-			box->b.tail = popped;
+			popped->next = box->b.tail;
+			box->b.tail->prev = popped;
+			box->b.tail->next = popped;
+			popped->prev = box->b.tail;
+			box->b.head = popped;
 			box->b.tail->next = box->b.head;
 			box->b.tail->prev = box->b.head;
 		}
@@ -82,11 +82,11 @@ void	push(t_box *box, t_type type)
 		}
 		else if (box->a.head == box->a.tail)
 		{
-			popped->next = box->a.head;
-			box->a.head->prev = popped;
-			box->a.head->next = popped;
-			popped->prev = box->a.head;
-			box->a.tail = popped;
+			popped->next = box->a.tail;
+			box->a.tail->prev = popped;
+			box->a.tail->next = popped;
+			popped->prev = box->a.tail;
+			box->a.head = popped;
 			box->a.tail->next = box->a.head;
 			box->a.tail->prev = box->a.head;
 		}

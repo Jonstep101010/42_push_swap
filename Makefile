@@ -13,7 +13,8 @@ SRC			:= push_swap.c \
 				sorting.c input_handling.c error.c \
 				push.c rotate.c swap.c \
 				checks.c \
-				printing.c indexing.c
+				printing.c indexing.c \
+				sort_small.c sorting_utils.c
 SRCS		:= $(addprefix $(SRC_DIR)/,$(SRC))
 
 OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)

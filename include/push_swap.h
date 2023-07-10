@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:19:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/09 18:00:20 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:23:10 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_stack
 	struct s_node	*head;
 	struct s_node	*tail;
 	int				type;
+	size_t			size;
 }	t_stack;
 
 typedef struct s_box
@@ -84,6 +85,11 @@ size_t	index_box(t_box *box);
 void	sort(t_box *box);
 void	sort_three(t_stack *stack);
 void	sort_five(t_box *box);
+
+bool	calc_rot_two(t_stack *stack, int val);
+int		find_lowest(t_stack *stack);
+int		find_highest(t_stack *stack);
+void	rotate_top(t_stack *stack);
 
 // /*list checking*/
 
