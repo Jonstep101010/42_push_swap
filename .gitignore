@@ -3,3 +3,5 @@ push_swap.dSYM/
 .vscode/*
 a.out
 .vscode/launch.json
+
+push_swap_visualizer
