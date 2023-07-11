@@ -6,19 +6,20 @@ INCS		:= include \
 	libft/include
 
 BUILD_DIR	:= .build
-DIR_MK		 = mkdir -p $(@D)
+DIR_MK		 = mkdir -p .build
 
 SRC_DIR		:= src
-SRC			:= push_swap.c \
-				sorting.c input_handling.c build_stack.c error.c \
-				push.c rotate.c swap.c \
-				checks.c \
-				printing.c indexing.c \
-				sort_small.c sorting_utils.c
-SRCS		:= $(addprefix $(SRC_DIR)/,$(SRC))
+DIRS		:= io operations sorting utils
+VPATH		:= $(addprefix $(SRC_DIR)/,$(DIRS))
 
-OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
-DEPS		:= $(SRCS:.c=.d)
+SRC_IO		:= push_swap.c input_handling.c build_stack.c error.c
+SRC_OP		:= swap.c rotate.c push.c
+SRC_AB		:= sorting.c sorting_utils.c sort_small.c
+SRC_UT		:= checks.c printing.c indexing.c
+
+SRCS		:= $(SRC_IO) $(SRC_OP) $(SRC_AB) $(SRC_UT)
+OBJS		:= $(addprefix $(BUILD_DIR)/, $(SRCS:%.c=%.o))
+DEPS		:= $(OBJS:.o=.d)
 
 CC			:= clang
 CFLAGS		:= -Wall -Wextra -Werror -fsanitize=address -g
@@ -28,31 +29,31 @@ LDLIB		:= $(addprefix -l,$(LIB))
 
 MAKEFLAGS	+= --silent --no-print-directory
 
-DONE		+= printf "\033[0;32m\xE2\x9C\x93\n\033[0m"
+DONE		= printf "\033[0;32m\xE2\x9C\x93\033[0m "
 
 all: $(NAME)
 
-$(NAME): $(SRCS) $(LIB_FT)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(SRCS) $(LDFLAGS) $(LDLIB) -o $(NAME)
-	$(info creating $(NAME) executable)$(DONE)
+$(NAME): $(OBJS) $(LIB_FT)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(LDFLAGS) $(LDLIB) -o $(NAME)
+	$(info creating $(NAME) executable)
+	printf "\033[0;32m\xE2\x9C\x93\n\033[0m"
 
 $(LIB_FT):
 	$(MAKE) -C $(@D)
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	$(info Compiling...)
+$(BUILD_DIR)/%.o: %.c
 	$(DIR_MK)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
-# $(info Done)
 	$(DONE)
+#info $($<)
+	echo $(notdir $<)
 
--include $(DEPS)
 
 clean:
 	$(info Cleaning...)
 	make -C $(dir $(LIB_FT)) clean
 	rm -rf $(NAME)
-	$(DONE)
+	printf "\033[0;32m\xE2\x9C\x93\n\033[0m"
 
 fclean: clean
 	make -C $(dir $(LIB_FT)) fclean
@@ -76,3 +77,4 @@ upgrade:
 
 .PHONY: run update re
 .SILENT:
+-include $(DEPS)
