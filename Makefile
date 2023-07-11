@@ -12,17 +12,17 @@ SRC_DIR		:= src
 DIRS		:= io operations sorting utils
 VPATH		:= $(addprefix $(SRC_DIR)/,$(DIRS))
 
-SRC_IO		:= push_swap.c input_handling.c build_stack.c error.c
+SRC_IO		:= push_swap.c input_handling.c build_stack.c error.c free_stack.c
 SRC_OP		:= swap.c rotate.c push.c
 SRC_AB		:= sorting.c sorting_utils.c sort_small.c
-SRC_UT		:= checks.c printing.c indexing.c
+SRC_UT		:= checks.c printing.c indexing.c manipulation.c
 
 SRCS		:= $(SRC_IO) $(SRC_OP) $(SRC_AB) $(SRC_UT)
 OBJS		:= $(addprefix $(BUILD_DIR)/, $(SRCS:%.c=%.o))
 DEPS		:= $(OBJS:.o=.d)
 
 CC			:= clang
-CFLAGS		:= -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS		:= -Wall -Wextra -Werror -g
 CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L,$(dir $(LIB_FT)))
 LDLIB		:= $(addprefix -l,$(LIB))
@@ -69,6 +69,13 @@ re:
 
 run: re
 	-./$(NAME)
+
+norme:
+	norminette ./src | grep Error
+
+check: norme
+	time cd ./resources && sh ./tests.sh && cd ..
+
 	
 
 upgrade:

@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_return.c                                     :+:      :+:    :+:   */
+/*   free_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/19 15:27:56 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/06/19 15:37:40 by jschwabe         ###   ########.fr       */
+/*   Created: 2023/07/11 19:34:19 by jschwabe          #+#    #+#             */
+/*   Updated: 2023/07/11 20:38:49 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* @brief display values inside sorted stack
-** @param a return stack*/
-void	display_return(t_stack *a)
+void	free_stack(t_stack *stack)
 {
-	t_stack	*t_i;
+	t_node	*tmp;
+	t_node	*tofree;
+	size_t	size;
+	int		i;
 
-	t_i = a->head;
-	ft_printf("\n");
-	while (t_i != a->tail)
+	i = 0;
+	size = elementcount(stack);
+	tmp = stack->head;
+	while (i < (int)size)
 	{
-		ft_printf("%d ", t_i->data);
-		t_i = t_i->next;
+		tofree = tmp;
+		tmp = tmp->next;
+		ft_bzero(tofree, sizeof(t_node));
+		free(tofree);
+		i++;
 	}
-	if (t_i == a->tail)
-		ft_printf("%d\n", t_i->data);
+	printf("%i", i);
 }

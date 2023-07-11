@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:19:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/11 13:45:46 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:38:55 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,6 @@ typedef enum e_type
 	B = 1,
 	AB = 2
 }t_type;
-
-// struct s_node 
-// {
-// 	int				data;
-// 	struct s_node	*next;
-// 	struct s_node	*prev;
-// };
-
-// typedef	struct s_node t_node;
-
-// typedef int t_integer;
-// t_integer number = 0;
 
 typedef struct s_node
 {
@@ -97,12 +85,18 @@ void	rotate_top(t_stack *stack);
 void	print_stack(t_stack *stack);
 void	print_stack_rev(t_stack *stack);
 
+/*manipulation*/
+void	prepend(t_stack *stack, int new_data);
+void	append(t_stack *stack, int new_data);
+
 size_t	elementcount(t_stack *stack);
 bool	check_stack(t_stack *stack);
 bool	is_sorted(t_stack *stack);
 // size_t	elementcount(t_stack *stack);
 // bool	check_links(t_stack *stack);
 void	scope_success(char *msg, t_stack *stack);
+
+void	free_stack(t_stack *stack);
 
 // //return values//
 // void	display_return(t_stack *a);
