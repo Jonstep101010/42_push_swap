@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:19:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/10 19:23:10 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/11 13:45:46 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef enum e_type
 
 typedef struct s_node
 {
-	int				index; 
+	int				index;
 	int				data;
 	struct s_node	*next;
 	struct s_node	*prev;
@@ -61,6 +61,7 @@ int		main(int argc, char *argv[]);
 
 //input handling//
 void	parse_input(t_box *box, int argc, char **argv);
+void	populate(t_box *box, int new_data);
 
 // //error handling//
 void	scope_error(char *msg);
@@ -95,7 +96,6 @@ void	rotate_top(t_stack *stack);
 
 void	print_stack(t_stack *stack);
 void	print_stack_rev(t_stack *stack);
-void	print_index(t_stack *stack);
 
 size_t	elementcount(t_stack *stack);
 bool	check_stack(t_stack *stack);

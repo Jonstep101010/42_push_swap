@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:54:35 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/09 17:59:40 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/11 13:45:54 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,4 @@ void	print_stack_rev(t_stack *stack)
 	}
 	if (t_i == stack->head->prev && t_i == stack->head)
 		ft_printf("\n(single element) %d\n", t_i->data);
-}
-
-void	print_index(t_stack *stack)
-{
-	t_node	*current;
-	current = stack->head;
-	while (current->next != stack->head)
-	{
-		ft_printf("\nindex[%d] %d\n", current->index, current->data);
-		if (current->next == stack->tail)
-			ft_printf("\nindex[%d] %d\n", current->next->index, current->next->data);
-		current = current->next;
-	}
 }

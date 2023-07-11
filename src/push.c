@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 16:03:44 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/10 13:31:52 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/11 13:59:34 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static t_node	*pop(t_stack *to_pop)
 {
 	t_node	*pop;
-	
+
 	if (!to_pop || !to_pop->head)
 		return (NULL);
 	pop = to_pop->head;
@@ -35,69 +35,80 @@ static t_node	*pop(t_stack *to_pop)
 	return (pop);
 }
 
+void	pb(t_box *box, t_node *popped)
+{
+	if (!&(box->b) || !box->b.head)
+	{
+		popped->next = popped;
+		popped->prev = popped;
+		box->b.head = popped;
+		box->b.tail = popped;
+	}
+	else if (box->b.head == box->b.tail)
+	{
+		popped->next = box->b.tail;
+		box->b.tail->prev = popped;
+		box->b.tail->next = popped;
+		popped->prev = box->b.tail;
+		box->b.head = popped;
+		box->b.tail->next = box->b.head;
+		box->b.tail->prev = box->b.head;
+	}
+	else
+	{
+		box->b.head->prev = popped;
+		box->b.tail->next = popped;
+		popped->prev = box->b.tail;
+		popped->next = box->b.head;
+		box->b.head = popped;
+	}
+}
+
+void	pa(t_box *box, t_node *popped)
+{
+	if (!&(box->a) || !box->a.head)
+	{
+		popped->next = popped;
+		popped->prev = popped;
+		box->a.head = popped;
+		box->a.tail = popped;
+	}
+	else if (box->a.head == box->a.tail)
+	{
+		popped->next = box->a.tail;
+		box->a.tail->prev = popped;
+		box->a.tail->next = popped;
+		popped->prev = box->a.tail;
+		box->a.head = popped;
+		box->a.tail->next = box->a.head;
+		box->a.tail->prev = box->a.head;
+	}
+	else
+	{
+		popped->prev = box->a.tail;
+		popped->next = box->a.head;
+		box->a.head->prev = popped;
+		box->a.tail->next = popped;
+		box->a.head = popped;
+	}
+}
+
 void	push(t_box *box, t_type type)
 {
 	t_node	*popped;
+
 	if (type == B)
 	{
 		popped = pop(&(box->a));
-		if (!&(box->b) || !box->b.head)
-		{
-			popped->next = popped;
-			popped->prev = popped;
-			box->b.head = popped;
-			box->b.tail = popped;
-			box->b.type = B;
-		}
-		else if (box->b.head == box->b.tail)
-		{
-			popped->next = box->b.tail;
-			box->b.tail->prev = popped;
-			box->b.tail->next = popped;
-			popped->prev = box->b.tail;
-			box->b.head = popped;
-			box->b.tail->next = box->b.head;
-			box->b.tail->prev = box->b.head;
-		}
-		else
-		{
-			box->b.head->prev = popped;
-			box->b.tail->next = popped;
-			popped->prev = box->b.tail;
-			popped->next = box->b.head;
-			box->b.head = popped;
-		}
+		pb(box, popped);
+		box->b.type = B;
 		ft_printf("pb\n");
 	}
 	else if (type == A)
 	{
 		popped = pop(&(box->b));
-		if (!&(box->a) || !box->a.head)
-		{
-			popped->next = popped;
-			popped->prev = popped;
-			box->a.head = popped;
-			box->a.tail = popped;
-			box->a.type = A;
-		}
-		else if (box->a.head == box->a.tail)
-		{
-			popped->next = box->a.tail;
-			box->a.tail->prev = popped;
-			box->a.tail->next = popped;
-			popped->prev = box->a.tail;
-			box->a.head = popped;
-			box->a.tail->next = box->a.head;
-			box->a.tail->prev = box->a.head;
-		}
-		else
-		{
-			popped->prev = box->a.tail;
-			popped->next = box->a.head;
-			box->a.head->prev = popped;
-			box->a.tail->next = popped;
-			box->a.head = popped;
-		}
+		pa(box, popped);
+		box->b.type = A;
 		ft_printf("pa\n");
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 17:07:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/07 18:14:59 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/11 14:01:58 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,8 @@ void	rotate(t_stack *stack, t_type type)
 	else if (type == B)
 		ft_printf("rb\n");
 	else
-		return;
-
+		return ;
 }
-	// ft_printf("\nold head %d\n", stack->head->prev->data);
-	// ft_printf("\nold tail %d\n", stack->tail->prev->data);
-	// ft_printf("\nnew tail %d\n", stack->tail->prev->next->data);
-	// ft_printf("\nnew tail %d\n", stack->tail->next->prev->data);
-	// ft_printf("\nnew head %d\n", stack->tail->next->data);
-	// ft_printf("\nnew head %d\n", stack->head->next->prev->data);
 
 /*
 ** @brief shift down, last to first
@@ -80,15 +73,8 @@ void	rev_rotate(t_stack *stack, t_type type)
 	else if (type == B)
 		ft_printf("rrb\n");
 	else
-		return;
+		return ;
 }
-
-// 	// ft_printf("\nold head %d\n", stack->head->next->data);
-// 	// ft_printf("\nold tail %d\n", stack->tail->next->data);
-// 	// ft_printf("\nnew tail %d\n", stack->tail->prev->next->data);
-// 	// ft_printf("\nnew tail %d\n", stack->tail->next->prev->data);
-// 	// ft_printf("\nnew head %d\n", stack->tail->next->data);
-// 	// ft_printf("\nnew head %d\n", stack->head->next->prev->data);
 
 void	rev_rotate_both(t_box *box)
 {

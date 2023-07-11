@@ -6,24 +6,11 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:02:26 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/09 17:27:50 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/11 14:09:50 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-//push
-//What should push with NULL be?
-//do nothing
-
-
-//pop
-//What should be the result of popping an empty stack?
-
-//swap
-//rotate
-//What should swap and rotate on a 1-element stack do?
-//do nothing
 
 void	swap_both(t_stack *stack_a, t_stack *stack_b)
 {
@@ -34,14 +21,13 @@ void	swap_both(t_stack *stack_a, t_stack *stack_b)
 
 /*
 ** @brief swap first two elements of stack
-** 
 */
 void	swap(t_stack *stack, t_type type)
 {
 	int	tmp;
 
-	// if (elementcount(stack) <= 1)
-	// 	return ;
+	if (elementcount(stack) <= 1)
+		return ;
 	tmp = stack->head->next->data;
 	stack->head->next->data = stack->head->data;
 	stack->head->data = tmp;
@@ -53,7 +39,5 @@ void	swap(t_stack *stack, t_type type)
 	else if (type == B)
 		ft_printf("sb\n");
 	else
-		return;
+		return ;
 }
-	// if (!stack)
-	// 	scope_error("swap attempt on ZERO value");

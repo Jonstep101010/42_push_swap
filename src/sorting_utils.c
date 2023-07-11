@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:13:37 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/10 19:35:06 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/11 14:06:50 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,33 @@
 
 //true = rotate
 //false = rev_rotate
-
+/*
+** @brief calculate rotation to get to value
+** 
+** @param stack 
+** @param val 
+** @return  
+*/
 bool	calc_rot_two(t_stack *stack, int val)
 {
 	t_node	*current;
-	int	tmp;
+	int		tmp;
 
 	stack->size = elementcount(stack);
 	tmp = 0;
 	current = stack->head;
-	while (tmp < (int) (stack->size / 2))
+	while (tmp < (int)(stack->size / 2))
 	{
 		if (current->index == val)
-			break;
+			break ;
 		current = current->next;
 		tmp++;
 	}
 	current = stack->head;
-	while (tmp != (int) (stack->size / 2))
+	while (tmp != (int)(stack->size / 2))
 	{
 		if (current->index == val)
-			break;
+			break ;
 		current = current->prev;
 		tmp--;
 	}
@@ -48,9 +54,9 @@ bool	calc_rot_two(t_stack *stack, int val)
 */
 int	find_lowest(t_stack *stack)
 {
-	size_t	i;
 	t_node	*current;
-	int	lowest;
+	size_t	i;
+	int		lowest;
 
 	lowest = 0;
 	i = 1;
@@ -102,9 +108,10 @@ void	rotate_top(t_stack *stack)
 {
 	int	tmp;
 	int	tmp2;
+
 	stack->size = elementcount(stack);
 	if (stack->size <= 3)
-		return;
+		return ;
 	tmp = find_lowest(stack);
 	tmp2 = tmp;
 	if (tmp == 1 && stack->size == 5)

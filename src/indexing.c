@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:19:28 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/10 11:10:07 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/11 13:42:15 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ size_t	index_box(t_box *box)
 		current = current->next;
 	}
 	box->a.tail->next = box->a.head;
-	// print_index(&(box->a));
 	return (size);
 }

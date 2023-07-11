@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:15:43 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/10 19:50:58 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/11 13:42:52 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 static bool	check_duplicate(t_stack *box)
 {
 	t_node	*t_i;
+
 	t_i = box->head;
 	while (t_i->next != box->head)
 	{
@@ -26,40 +27,6 @@ static bool	check_duplicate(t_stack *box)
 		t_i = t_i->next;
 	}
 	return (true);
-}
-
-void	populate(t_box *box, int new_data)
-{
-	t_node	*new;
-	new = ft_calloc(1, sizeof(t_node));
-	new->data = new_data;
-	if (!(box->a.head))
-	{
-		new->next = new;
-		new->prev = new;
-		box->a.head = new;
-		// box->a.tail = new;
-		box->a.type = A;
-	}
-	else if ((box->a.head) == (box->a.tail))
-	{
-		new->next = box->a.head;
-		box->a.head->prev = new;
-		box->a.head->next = new;
-		new->prev = box->a.head;
-		// box->a.tail = new;
-		// box->a.tail->next = box->a.head;
-		// box->a.tail->prev = box->a.head;
-	}
-	else
-	{
-		box->a.head->prev = new;
-		box->a.tail->next = new;
-		new->prev = box->a.tail;
-		new->next = box->a.head;
-		// box->a.tail = new;
-	}
-	box->a.tail = new;
 }
 
 /*
@@ -112,7 +79,10 @@ void	parse_input(t_box *box, int argc, char **argv)
 		while (tmp[++ii])
 		{
 			if (ii == 0 && validate_input(tmp[ii]))
+			{
 				populate(box, ft_atoi(tmp[ii]));
+				box->a.type = A;
+			}
 			else if (validate_input(tmp[ii]) && check_duplicate(&(box->a)))
 				populate(box, ft_atoi(tmp[ii]));
 			else

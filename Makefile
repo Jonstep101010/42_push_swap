@@ -10,7 +10,7 @@ DIR_MK		 = mkdir -p $(@D)
 
 SRC_DIR		:= src
 SRC			:= push_swap.c \
-				sorting.c input_handling.c error.c \
+				sorting.c input_handling.c build_stack.c error.c \
 				push.c rotate.c swap.c \
 				checks.c \
 				printing.c indexing.c \
@@ -68,16 +68,6 @@ re:
 
 run: re
 	-./$(NAME)
-
-three:
-	$(MAKE)
-	-./$(NAME) "1 2 3" && echo "- - -"
-	-./$(NAME) "3 2" 1 && echo "- - -"
-	-./$(NAME) "3" 1 2 && echo "- - -"
-	-./$(NAME) 1 3 2 && echo "- - -"
-	-./$(NAME) 2 1 3 && echo "- - -"
-	-./$(NAME) 2 3 1 && echo "- - -"
-	-./$(NAME) 2 3 1 4 && grep "error"
 	
 
 upgrade:

@@ -6,17 +6,11 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 19:01:24 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/10 19:22:47 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/11 14:03:51 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-
-// void	sort_big(t_box *box)
-// {
-	
-// }
 
 void	sort(t_box *box)
 {
@@ -40,4 +34,3 @@ void	sort(t_box *box)
 	// else
 	// 	print_stack(&(box->a));
 }
-
