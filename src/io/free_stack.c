@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:34:19 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/11 20:38:49 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:58:33 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ void	free_stack(t_stack *stack)
 	{
 		tofree = tmp;
 		tmp = tmp->next;
-		ft_bzero(tofree, sizeof(t_node));
 		free(tofree);
 		i++;
 	}
-	printf("%i", i);
 }

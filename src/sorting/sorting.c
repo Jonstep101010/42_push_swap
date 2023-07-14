@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 19:01:24 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/11 14:03:51 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:00:08 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	sort(t_box *box)
 	if (is_sorted(&(box->a)))
 		return ;
 	if (size == 2)
-		swap(&(box->a), A);
+		sa(box);
 	else if (size == 3)
-		sort_three(&(box->a));
+		sort_three(box);
 	else if (size <= 5)
 		sort_five(box);
 	// else if (size <= 100)

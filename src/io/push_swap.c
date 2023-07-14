@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:17:14 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/11 20:41:50 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:48:53 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void	display_return(t_stack *box)
 {
 	t_node	*t_i;
-	
+
 	if (!box->head || !box->tail)
 		return ;
 	t_i = box->head;
@@ -30,7 +30,6 @@ void	display_return(t_stack *box)
 	if (t_i == box->tail)
 		ft_printf("%d\n", t_i->data);
 }
-
 
 int	main(int argc, char *argv[])
 {
@@ -50,7 +49,6 @@ int	main(int argc, char *argv[])
 		scope_error("invalid input");
 	sort(&box);
 	free_stack(&(box.a));
-	append(&(box.b), 42);
 	if (&(box.b) || box.b.head)
 		free_stack(&(box.b));
 	return (0);

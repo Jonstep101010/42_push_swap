@@ -79,9 +79,8 @@ check: norme
 	
 
 upgrade:
-	$(MAKE) update
-	$(MAKE) run
+	$(MAKE) update && $(MAKE) re
 
-.PHONY: run update re
+.PHONY: run update upgrade re
 .SILENT:
 -include $(DEPS)

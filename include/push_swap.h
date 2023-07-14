@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:19:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/11 20:38:55 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/14 13:59:55 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,11 @@ void	rotate(t_stack *stack, t_type type);
 void	rotate_both(t_box *box);
 void	rev_rotate(t_stack *stack, t_type type);
 void	rev_rotate_both(t_box *box);
-void	swap(t_stack *stack, t_type type);
-void	swap_both(t_stack *stack_a, t_stack *stack_b);
+
+// swap ops //
+void	sa(t_box *box);
+void	sb(t_box *box);
+void	ss(t_box *box);
 
 // //list functions//
 // void	append(t_stack *stack, int new_data);
@@ -72,7 +75,7 @@ size_t	elementcount(t_stack *stack);
 size_t	index_box(t_box *box);
 
 void	sort(t_box *box);
-void	sort_three(t_stack *stack);
+void	sort_three(t_box *box);
 void	sort_five(t_box *box);
 
 bool	calc_rot_two(t_stack *stack, int val);
@@ -95,6 +98,7 @@ bool	is_sorted(t_stack *stack);
 // size_t	elementcount(t_stack *stack);
 // bool	check_links(t_stack *stack);
 void	scope_success(char *msg, t_stack *stack);
+void	error(t_box *box);
 
 void	free_stack(t_stack *stack);
 

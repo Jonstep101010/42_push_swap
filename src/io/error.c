@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:23:35 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/11 20:36:22 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:00:42 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 void	scope_error(char *msg)
 {
 	ft_printf("\033[1;31m Error: %s\033[1;0m\n", msg);
+	exit(1);
+}
+
+void	error(t_box *box)
+{
+	free_stack(&(box->a));
+	free_stack(&(box->b));
 	exit(1);
 }
 

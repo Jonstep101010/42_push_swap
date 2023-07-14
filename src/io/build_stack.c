@@ -6,17 +6,28 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 22:46:14 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/11 13:39:32 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:02:56 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static void	*check_alloc(t_box *box)
+{
+	t_node	*new;
+
+	new = NULL;
+	new = ft_calloc(1, sizeof(t_node));
+	if (!new)
+		error(box);
+	return (new);
+}
+
 void	populate(t_box *box, int new_data)
 {
 	t_node	*new;
 
-	new = ft_calloc(1, sizeof(t_node));
+	new = check_alloc(box);
 	new->data = new_data;
 	if (!(box->a.head))
 	{

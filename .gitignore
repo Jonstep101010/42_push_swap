@@ -1,8 +1,7 @@
 src/tmp.c
 push_swap.dSYM/
-.vscode/*
+.vscode/
 a.out
-.vscode/launch.json
 *.o
 *.d
 *.out
