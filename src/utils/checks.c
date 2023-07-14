@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:12 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/11 13:41:12 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:31:32 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,26 +77,4 @@ bool	check_stack(t_stack *stack)
 		scope_error("head data is incorrect!");
 	scope_success("head and tail position", stack);
 	return (true);
-}
-
-/*
-** @brief checks if stack is empty, counts elements
-*/
-size_t	elementcount(t_stack *stack)
-{
-	t_node	*t_i;
-	size_t	i;
-
-	if (!stack || !stack->head)
-		return (0);
-	if (stack->head == stack->tail)
-		return (1);
-	t_i = stack->head->next;
-	i = 2;
-	while (t_i->next != stack->head)
-	{
-		t_i = t_i->next;
-		i++;
-	}
-	return (i);
 }

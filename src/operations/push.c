@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 16:03:44 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/11 13:59:34 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:56:26 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,22 @@ static t_node	*pop(t_stack *to_pop)
 	return (pop);
 }
 
-void	pb(t_box *box, t_node *popped)
+static void	push_new(t_stack *new, t_node *popped, t_type type)
 {
+	popped->next = popped;
+	popped->prev = popped;
+	new->head = popped;
+	new->tail = popped;
+	new->type = type;
+}
+
+void	pb(t_box *box)
+{
+	t_node	*popped;
+
+	popped = pop(&(box->a));
 	if (!&(box->b) || !box->b.head)
-	{
-		popped->next = popped;
-		popped->prev = popped;
-		box->b.head = popped;
-		box->b.tail = popped;
-	}
+		push_new(&(box->b), popped, B);
 	else if (box->b.head == box->b.tail)
 	{
 		popped->next = box->b.tail;
@@ -62,17 +69,16 @@ void	pb(t_box *box, t_node *popped)
 		popped->next = box->b.head;
 		box->b.head = popped;
 	}
+	ft_printf("pb\n");
 }
 
-void	pa(t_box *box, t_node *popped)
+void	pa(t_box *box)
 {
+	t_node	*popped;
+
+	popped = pop(&(box->b));
 	if (!&(box->a) || !box->a.head)
-	{
-		popped->next = popped;
-		popped->prev = popped;
-		box->a.head = popped;
-		box->a.tail = popped;
-	}
+		push_new(&(box->a), popped, A);
 	else if (box->a.head == box->a.tail)
 	{
 		popped->next = box->a.tail;
@@ -91,24 +97,5 @@ void	pa(t_box *box, t_node *popped)
 		box->a.tail->next = popped;
 		box->a.head = popped;
 	}
-}
-
-void	push(t_box *box, t_type type)
-{
-	t_node	*popped;
-
-	if (type == B)
-	{
-		popped = pop(&(box->a));
-		pb(box, popped);
-		box->b.type = B;
-		ft_printf("pb\n");
-	}
-	else if (type == A)
-	{
-		popped = pop(&(box->b));
-		pa(box, popped);
-		box->b.type = A;
-		ft_printf("pa\n");
-	}
+	ft_printf("pa\n");
 }

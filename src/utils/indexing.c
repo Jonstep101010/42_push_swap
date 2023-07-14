@@ -6,11 +6,33 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:19:28 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/11 13:42:15 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:31:38 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** @brief checks if stack is empty, counts elements
+*/
+size_t	elementcount(t_stack *stack)
+{
+	t_node	*t_i;
+	size_t	i;
+
+	if (!stack || !stack->head)
+		return (0);
+	if (stack->head == stack->tail)
+		return (1);
+	t_i = stack->head->next;
+	i = 2;
+	while (t_i->next != stack->head)
+	{
+		t_i = t_i->next;
+		i++;
+	}
+	return (i);
+}
 
 size_t	index_box(t_box *box)
 {

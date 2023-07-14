@@ -1,9 +1,9 @@
 NAME		:= push_swap
 
 LIB			:= ft
-LIB_FT		:= libft/libft.a
+LIB_FT		:= include/libft/libft.a
 INCS		:= include \
-	libft/include
+	include/libft/include
 
 BUILD_DIR	:= .build
 DIR_MK		 = mkdir -p .build
@@ -13,9 +13,9 @@ DIRS		:= io operations sorting utils
 VPATH		:= $(addprefix $(SRC_DIR)/,$(DIRS))
 
 SRC_IO		:= push_swap.c input_handling.c build_stack.c error.c free_stack.c
-SRC_OP		:= swap.c rotate.c push.c
-SRC_AB		:= sorting.c sorting_utils.c sort_small.c
-SRC_UT		:= checks.c printing.c indexing.c manipulation.c
+SRC_OP		:= push.c swap.c rotate.c rev_rotate.c
+SRC_AB		:= calculations.c sorting.c sorting_utils.c sort_small.c sort_big.c
+SRC_UT		:= checks.c printing.c indexing.c find.c
 
 SRCS		:= $(SRC_IO) $(SRC_OP) $(SRC_AB) $(SRC_UT)
 OBJS		:= $(addprefix $(BUILD_DIR)/, $(SRCS:%.c=%.o))
@@ -61,7 +61,10 @@ fclean: clean
 	rm -rf $(BUILD_DIR)
 
 update:
-	cd ./include && git submodule update --init --recursive && cd ..
+	git stash
+	git pull
+	git submodule update --init
+	git stash pop
 
 re:
 	$(MAKE) fclean
