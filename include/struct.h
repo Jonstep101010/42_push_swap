@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 19:19:44 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/14 19:24:24 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/15 17:43:20 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_node
 {
 	int				index;
 	int				data;
+	int				chunk;
 	struct s_node	*next;
 	struct s_node	*prev;
 }	t_node;
@@ -42,5 +43,15 @@ typedef struct s_box
 	struct s_stack	a;
 	struct s_stack	b;
 }	t_box;
+
+typedef struct s_vals
+{
+	int	nbr;
+	int	id;
+	int	max;
+	int	size;
+	int	tmp_size;
+	int	tmp_id;
+}	t_vals;
 
 #endif

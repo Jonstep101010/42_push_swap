@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:19:28 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/14 20:31:38 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:57:05 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ size_t	elementcount(t_stack *stack)
 		t_i = t_i->next;
 		i++;
 	}
+	stack->size = i;
 	return (i);
 }
 

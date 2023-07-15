@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 20:29:27 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/14 20:58:39 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/15 10:58:56 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	calc_rot(t_stack *stack, int val)
 		if (current->index == val)
 			return (false);
 		current = current->prev;
-		tmp--;
+		tmp++;
 	}
 	return (false);
 }
