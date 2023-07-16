@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 19:01:24 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/16 17:40:05 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/16 21:12:02 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,46 +54,120 @@ void	assign_chunks(t_box *box, t_vals *c)
 	}
 }
 
-void	rotate_high(t_box *box, t_type type)
+	// while (box->a.head->index < ((int)box->a.size) - 5)
+	// {
+	// 	pb(box);
+	// 	if (box->a.size <= 5 && box->a.head->index > ((int)box->a.size) - 6)
+	// 		return ((void)sort_five(box));
+	// 	else
+	// 		ra(box);
+	// }
+int		calc_moves(t_stack *stack, t_node *target, t_vals *val)
 {
-	t_stack	*stack;
-	int		tmp;
-	int		tmp2;
+	t_node	*current;
+	int	counter_r;
 
-	stack = &(box->a);
-	if (type == B)
-		stack = &(box->b);
 	stack->size = elementcount(stack);
-	if (stack->size <= 3)
-		return ;
-	tmp = find_highest(stack);
-	tmp2 = tmp - 1;
-	if (calc_rot(stack, tmp) == true || calc_rot(stack, tmp2) == true)
+	counter_r = 0;
+	val->tmp_id = 0;
+	current = stack->head;
+	while (current != target)
 	{
-		while (!(stack->head->index == tmp || stack->head->index == tmp2))
-			ra(box);
+		current = current->next;
+		counter_r++;
 	}
-	else
+	int counter_rr = 0;
+	current = stack->head;
+	while (current != target)
 	{
-		while (!(stack->head->index == tmp || stack->head->index == tmp2))
-			rra(box);
+		current = current->prev;
+		counter_rr++;
 	}
+	ft_printf("ra[%d], rra[%d]\n", counter_r, counter_rr);
+	if (counter_rr < counter_r)
+	{
+		val->tmp_id = -1;
+		return (counter_rr);
+	}
+	val->tmp_id = 1;
+	return (counter_r);
+	// else
+	// {
+	// 	val->tmp_id = -1;
+	// 	return (counter_rr);
+	// }
 }
 
-// void	sort_chunks(t_box *box)
-// {
-// 	while (box->a.head->index < ((int)box->a.size) - 5)
-// 	{
-// 		pb(box);
-// 		if (box->a.size <= 5 && box->a.head->index > ((int)box->a.size) - 6)
-// 			return ((void)sort_five(box));
-// 		else
-// 			ra(box);
-// 	}
-// }
+int	find_chunk_member(t_box *box, t_vals *chunks)
+{
+	t_node	*current;
+	int		count1;
+	int		count2;
+
+	count1 = 0;
+	count2 = 0;
+	current = box->a.head;
+	while (current->chunk != chunks->id && count1 < (int)box->a.size)
+	{
+		count1++;
+		current = current->next;
+	}
+	if (current->chunk == chunks->id)
+		count1 = calc_moves(&(box->a), current, chunks);
+	ft_printf("count 1 %d\n", count1);
+	current = box->a.head;
+	while (current->chunk != chunks->id && count2 < (int)box->a.size)
+	{
+		count2++;
+		current = current->prev;
+	}
+	int tmp = chunks->tmp_id;
+	if (current->chunk == chunks->id)
+		count2 = calc_moves(&(box->a), current, chunks);
+	ft_printf("count 2 %d\n", count2);
+	if (count1 != count2)
+	{
+		ft_printf("count1[%d], count2[%d]\n", count1, count2);
+		if (count1 < count2)
+		{
+			chunks->tmp_id = tmp;
+			return (count1);
+		}
+		else
+			return (count2);
+	}
+	return (-10);
+}
+
+//know more about function pointers!!
+void	push_member(t_box *box, t_vals *vals)
+{
+	int distance = find_chunk_member(box, vals);
+	ft_printf("dist %d\n", distance);
+	// void	*op;
+	ft_printf("vals tmp id %d\n", vals->tmp_id);
+	while (box->a.head->chunk != vals->id)
+	{
+		
+		if (vals->tmp_id == 1)
+			ra(box);
+		else
+			return ;
+	}
+	if (box->a.head->chunk == vals->id)
+		ft_printf("[%d][%d]: %d\n", box->a.head->chunk, box->a.head->index, box->a.head->data);
+
+}
+	
+void	sort_chunks(t_box *box, t_vals *chunks)
+{
+	chunks->id = 1;
+	push_member(box, chunks);
+	print_stack(&(box->b));
+	print_stack(&(box->a));
+}
 
 	// if (box->a.size % 5 == 0)
-	// sort_chunks(box);
 void	define_chunks(t_box *box)
 {
 	t_vals		chunks;
@@ -110,6 +184,7 @@ void	define_chunks(t_box *box)
 	chunks.size = (((int)box->a.size) / chunks.nbr);
 	assign_chunks(box, &(chunks));
 	print_chunks(box);
+	sort_chunks(box, &chunks);
 }
 
 void	sort(t_box *box)

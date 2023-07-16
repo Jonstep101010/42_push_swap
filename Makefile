@@ -80,7 +80,7 @@ check: norme
 	time cd ./resources && sh ./tests.sh && cd ..
 
 upgrade:
-	$(MAKE) update && $(MAKE) re
+	-$(MAKE) update && $(MAKE) re
 
 .PHONY: run update upgrade re
 .SILENT:
