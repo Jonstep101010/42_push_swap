@@ -74,12 +74,10 @@ run: re
 	-./$(NAME)
 
 norme:
-	norminette ./src | grep Error
+	-norminette src/ | grep Error
 
 check: norme
 	time cd ./resources && sh ./tests.sh && cd ..
-
-	
 
 upgrade:
 	$(MAKE) update && $(MAKE) re

@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 19:01:24 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/15 19:09:30 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/16 17:40:05 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	rotate_high(t_box *box, t_type type)
 	}
 }
 
-
 // void	sort_chunks(t_box *box)
 // {
 // 	while (box->a.head->index < ((int)box->a.size) - 5)
@@ -91,10 +90,10 @@ void	rotate_high(t_box *box, t_type type)
 // 		else
 // 			ra(box);
 // 	}
-	
 // }
 
 	// if (box->a.size % 5 == 0)
+	// sort_chunks(box);
 void	define_chunks(t_box *box)
 {
 	t_vals		chunks;
@@ -111,7 +110,6 @@ void	define_chunks(t_box *box)
 	chunks.size = (((int)box->a.size) / chunks.nbr);
 	assign_chunks(box, &(chunks));
 	print_chunks(box);
-	// sort_chunks(box);
 }
 
 void	sort(t_box *box)
