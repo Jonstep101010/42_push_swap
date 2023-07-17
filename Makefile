@@ -6,7 +6,6 @@ INCS		:= include \
 	include/libft/include
 
 BUILD_DIR	:= .build
-DIR_MK		 = mkdir -p .build
 
 SRC_DIR		:= src
 DIRS		:= io operations sorting utils
@@ -22,7 +21,7 @@ OBJS		:= $(addprefix $(BUILD_DIR)/, $(SRCS:%.c=%.o))
 DEPS		:= $(OBJS:.o=.d)
 
 CC			:= clang
-CFLAGS		:= -Wall -Wextra -Werror -g
+CFLAGS		?= -Wall -Wextra -Werror -g -fsanitize=address
 CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L,$(dir $(LIB_FT)))
 LDLIB		:= $(addprefix -l,$(LIB))
@@ -33,7 +32,7 @@ DONE		= printf "\033[0;32m\xE2\x9C\x93\033[0m "
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIB_FT)
+$(NAME): $(LIB_FT) $(OBJS)
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(LDFLAGS) $(LDLIB) -o $(NAME)
 	$(info creating $(NAME) executable)
 	printf "\033[0;32m\xE2\x9C\x93\n\033[0m"
@@ -41,13 +40,14 @@ $(NAME): $(OBJS) $(LIB_FT)
 $(LIB_FT):
 	$(MAKE) -C $(@D)
 
-$(BUILD_DIR)/%.o: %.c
-	$(DIR_MK)
+$(BUILD_DIR)/%.o: %.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 	$(DONE)
 #info $($<)
 	echo $(notdir $<)
 
+$(BUILD_DIR):
+	mkdir -p .build
 
 clean:
 	$(info Cleaning...)
@@ -83,5 +83,5 @@ upgrade:
 	-$(MAKE) update && $(MAKE) re
 
 .PHONY: run update upgrade re
-.SILENT:
+# .SILENT:
 -include $(DEPS)
