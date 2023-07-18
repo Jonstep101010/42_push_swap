@@ -6,11 +6,74 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:07:33 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/14 19:03:22 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:47:07 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** @brief calculate rotation to get to value
+**
+** @return true rotate
+** @return false rev_rotate
+*/
+bool	calc_rot(t_stack *stack, int val)
+{
+	t_node	*current;
+	int		tmp;
+
+	stack->size = elementcount(stack);
+	tmp = 0;
+	current = stack->head;
+	while (tmp < (int)(stack->size / 2))
+	{
+		if (current->index == val)
+			return (true);
+		current = current->next;
+		tmp++;
+	}
+	current = stack->tail;
+	while (tmp < (int)(stack->size))
+	{
+		if (current->index == val)
+			return (false);
+		current = current->prev;
+		tmp++;
+	}
+	return (false);
+}
+
+/*
+** @brief determine efficacy of rotation direction
+*/
+void	rotate_top(t_box *box, t_type type)
+{
+	t_stack	*stack;
+	int		tmp;
+	int		tmp2;
+
+	stack = &(box->a);
+	if (type == B)
+		stack = &(box->b);
+	stack->size = elementcount(stack);
+	if (stack->size <= 3)
+		return ;
+	tmp = find_lowest(stack);
+	tmp2 = tmp;
+	if (tmp == 1 && stack->size == 5)
+		tmp2 = 2;
+	if (calc_rot(stack, tmp) == true || calc_rot(stack, tmp2) == true)
+	{
+		while (!(stack->head->index == tmp || stack->head->index == tmp2))
+			ra(box);
+	}
+	else
+	{
+		while (!(stack->head->index == tmp || stack->head->index == tmp2))
+			rra(box);
+	}
+}
 
 /*
 ** @brief sort three digits
@@ -66,3 +129,13 @@ void	sort_five(t_box *box)
 	if (!is_sorted(&(box->a)))
 		sa(box);
 }
+	// t_node	*current;
+
+	// current = box->a.head;
+	// while (current->index != find_highest(&(box->a)) && current->index > 3)
+	// {
+	// 	current = current->next;
+	// }
+	// int	direction;
+
+	// direction = calc_moves(&(box->a), current);

@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:17:14 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/16 18:00:02 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:46:16 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ int	main(int argc, char *argv[])
 		}
 		else
 			box.size = elementcount(&(box.a));
-		ft_printf("Total amount = %zu\n", box.size);
-		// ft_printf("type: %d\n", box.a.type);
 	}
 	else
 		scope_error("invalid input");

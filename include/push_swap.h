@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:19:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/14 20:36:15 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:41:59 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ void	sort_big(t_box *box);
 bool	is_sorted(t_stack *stack);
 size_t	elementcount(t_stack *stack);
 size_t	index_box(t_box *box);
+
+// chunk utils //
+
+void	assign_chunks(t_box *box, t_vals *c);
+int		find_chunk_member(t_box *box, t_vals *chunks);
+int		calc_moves(t_stack *stack, t_node *target);
 
 // sorting calculations //
 

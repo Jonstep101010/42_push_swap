@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:54:35 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/11 13:45:54 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:21:53 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	print_stack(t_stack *stack)
 	if (t_i == stack->head->prev && t_i == stack->head)
 		ft_printf("\n(single element) %d\n", t_i->data);
 }
+//			ft_printf("[%d] %d -> ", t_i->chunk,t_i->data);
 
 /*
 ** @brief prints stack (tail to head)
