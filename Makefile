@@ -70,6 +70,10 @@ re:
 	$(MAKE) fclean
 	$(MAKE) all
 
+vis:
+	$(MAKE) all
+	./push_swap_visualizer/build/bin/visualizer
+
 run: re
 	-./$(NAME)
 
@@ -82,6 +86,6 @@ check: norme
 upgrade:
 	-$(MAKE) update && $(MAKE) re
 
-.PHONY: run update upgrade re
+.PHONY: run update upgrade re vis
 # .SILENT:
 -include $(DEPS)

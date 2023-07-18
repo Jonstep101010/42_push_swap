@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 20:29:27 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/18 14:44:34 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:16:46 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	calc_moves(t_stack *stack, t_node *target)
 	return (-1);
 }
 
+//(current->chunk != chunks->id || current->index == (int)box->size)
 int	find_chunk_member(t_box *box, t_vals *chunks)
 {
 	t_node	*current;
