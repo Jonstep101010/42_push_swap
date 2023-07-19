@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 20:29:27 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/18 16:16:46 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/19 12:55:32 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,16 @@ int	calc_moves(t_stack *stack, t_node *target)
 	counter = 0;
 	counter2 = 0;
 	current = stack->head;
-	while (current != target && counter <= ((int)stack->size / 2))
+	while (current != target && counter++ <= ((int)stack->size / 2))
 	{
 		current = current->next;
-		counter++;
+		// counter++;
 	}
 	current = stack->head;
-	while (current != target && counter2 <= ((int)stack->size / 2))
+	while (current != target && counter2++ <= ((int)stack->size / 2))
 	{
 		current = current->prev;
-		counter2++;
+		// counter2++;
 	}
 	if (counter <= counter2)
 		return (1);

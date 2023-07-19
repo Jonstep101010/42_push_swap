@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 19:01:24 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/18 18:19:28 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:30:08 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,73 @@
 			break ;
 	}
 } */
+
+
+
+
+//function to start from biggest index/boxsize checking if decrementation matches
+bool	is_index_sort_a(t_box *box)
+{
+	int	lowest;
+	t_node	*current;
+
+	lowest = (int) box->size + 1;
+	current = box->a.tail;
+	while (current != box->a.head)
+	{
+		if (box->a.tail->index != (int)box->size)
+			error(box);
+		if (current->index < lowest)
+			lowest = current->index;
+		else
+			return (false);
+		if (current->prev == box->a.head)
+		{
+			if (current->prev->index < lowest)
+				lowest = current->prev->index;
+			else
+				return (false);
+		}
+		current = current->prev;
+	}
+	return (true);
+}
+
+//function to calculate which is the highest number that can go back into stack a, so that only ra/rra or sa are needed
+
+
+int		find_value_b(t_box *box)
+{
+	t_node	*current;
+	int	count1;
+	int	count2;
+	int	calc1;
+	int	calc2;
+
+	count1 = 0;
+	count2 = 0;
+	calc1 = -2;
+	calc2 = -2;
+	current = box->b.head;
+	// if (!is_index_sort_a(box) || box->a.tail->index != (int)box->size)
+	// 	return (-1);
+	while (current->index != box->a.head->index - 1 && count1++ <= (int)box->b.size)
+		current = current->next;
+	if (current->index == box->a.head->index - 1)
+		calc1 = calc_moves(&(box->b), current);
+	// if (current->index < find_highest(&(box->b)))
+	// 	return (-2);
+	current = box->b.head;
+	while (current->index != box->a.head->index - 2 && count1++ <= (int)box->b.size)
+		current = current->prev;
+	if (current->index == box->a.head->index - 2)
+		calc1 = calc_moves(&(box->b), current);
+	if (calc1 == -1 || calc2 == -1 || calc1 == -2 || calc2 == -2)
+		return (-1);
+	if (count1 <= count2)
+		return (calc1);
+	return (calc2);
+}
 
 //know more about function pointers!!
 bool	push_member(t_box *box, t_vals *vals)
@@ -49,6 +116,44 @@ bool	push_member(t_box *box, t_vals *vals)
 	return (true);
 }
 
+bool	rotate_highest_b(t_box *box)
+{
+	int	direction;
+
+	t_node	*current;
+	current = box->b.head;
+	// if (!&(box->b.head))
+	// 	return (false);
+	// direction = find_value_b(box);
+	t_node	*target;
+	target = find_highest(&(box->b));
+	// ft_printf("highest %d\n", target->index);
+	direction = calc_moves(&(box->b), target);
+	// if (direction == -1)
+	// 	return (false);
+	// if (direction == -2)
+	// {
+	// 	if (box->b.tail == target)
+	// 		return (rrb(box), true);
+	// 	// else
+	// 	// {
+	// 	// 	while (current->index != target && current != box->b.tail)
+	// 	// 		current = current->next;
+	// 	// 	if (current->index == target)
+	// 	// 		direction = calc_moves(&(box->b), current);
+	// 	// 	while (direction == 1 && box->b.head->index != target)
+	// 	// 		rb(box);
+	// 	// 	while (direction == 0 && box->b.head->index != target)
+	// 	// 		rrb(box);
+	// 	// }
+	// }
+	while (direction == 1 && (box->b.head->index != target->index))
+		rb(box);
+	while (direction == 0 && (box->b.head->index != target->index))
+		rrb(box);
+	return (true);
+}
+
 void	push_chunks(t_box *box, t_vals *chunks)
 {
 	int	i;
@@ -60,17 +165,58 @@ void	push_chunks(t_box *box, t_vals *chunks)
 		chunks->max = chunks->size * chunks->id;
 		while (++i <= chunks->max && push_member(box, chunks) == true)
 		{
-			if (chunks->id % 2 == 0)
+			if (chunks->id % 2 == 0 && chunks->nbr > 3)
 				rb(box);
 		}
 		chunks->id++;
 	}
-	while (box->a.head->index <= (int)box->size && box->a.size > 5)
+	while (box->a.size > 5)
 	{
-		if (box->a.head->index >= (int)box->size - 5)
+		if (box->a.head->index < (int)box->size - 4)
+			pb(box);
+		else
+		{
+			ft_printf("[%d] %d\n", box->a.head->index, box->a.head->data);
 			ra(box);
-		pb(box);
+		}
 	}
+	//sort 5 biggest numbers
+	if (box->a.size == 5 && chunks->nbr)
+		sort_five(box);
+	// print_stack(&(box->a));
+	// print_stack(&(box->b));
+	while (box->b.head)
+	{
+		// if (box->b.head && box->b.head->index == box->a.head->index - 1 && box->a.tail->index == (int)box->size)
+		// 	pa(box);
+		// else if (is_index_sort_a(box))
+		if (rotate_highest_b(box))
+			pa(box);
+	}
+	// print_stack(&(box->a));
+	// print_stack(&(box->b));
+	// chunks->nbr = box->a.tail->chunk;
+	// chunks->id = box->a.tail->chunk;
+	// if (is_index_sort_a(box))
+	// 	ft_printf("index sorted\n");
+	// else
+	// 	ft_printf("index not sorted\n");
+	// while (box->b.head->chunk == chunks->id || box->b.tail->chunk == chunks->id)
+	// {
+	// 	if (box->b.head->index == box->a.head->index - 1 && is_sorted(&(box->a)))
+	// 		pa(box);
+	// 	// if (box->b.head->index == box->a.head->index - 2 )
+	// 	// if (box->b.head->chunk == chunks->id && box->a.tail->chunk == chunks->id)
+	// 	// {
+	// 	// 	//make sure to not get into infinite loop - prefer range with fewest rotates & bring 
+	// 	// 	//to top if necessary/possible
+	// 	// }
+	// 	// if (box->b.tail->chunk == chunks->id)
+	// 	// if (box->b.head->chunk == chunks->id)
+	// 	// {
+			
+	// 	// }
+	// }
 	// if (box->a.size == 5)
 	// 	sort_five(box);
 	// if (box->a.size == 2 && !is_sorted(&(box->a)) && box->b.head->index < box->a.head->index)
@@ -91,6 +237,8 @@ void	push_chunks(t_box *box, t_vals *chunks)
 	// while (box->b.head->index >= (int) box->size -1)
 	// 	pa(box);
 }
+	// box->a.head->index = 6;
+
 
 // print_chunks(box);
 void	define_chunks(t_box *box)
@@ -99,13 +247,13 @@ void	define_chunks(t_box *box)
 
 	chunks.id = 1;
 	if (box->a.size <= 100)
-		chunks.nbr = 3;
+		chunks.nbr = 5;
 	else if (box->a.size <= 200)
 		chunks.nbr = 5;
 	else if (box->a.size <= 500)
 		chunks.nbr = 7;
 	else
-		chunks.nbr = 10;
+		chunks.nbr = 30;
 	chunks.size = (((int)box->a.size) / chunks.nbr);
 	assign_chunks(box, &(chunks));
 	push_chunks(box, &chunks);
@@ -147,3 +295,5 @@ void	sort(t_box *box)
 		scope_error("not sorted: sorting incorrect");
 	}
 }
+
+//

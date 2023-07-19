@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:19:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/18 14:41:59 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/19 17:47:36 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ bool	check_links(t_stack *stack);
 void	sort(t_box *box);
 void	sort_three(t_box *box);
 void	sort_five(t_box *box);
-void	sort_big(t_box *box);
+// void	sort_big(t_box *box);
 
 // sorting utils //
 
@@ -62,7 +62,7 @@ int		calc_moves(t_stack *stack, t_node *target);
 bool	calc_rot(t_stack *stack, int val);
 void	rotate_top(t_box *box, t_type type);
 int		find_lowest(t_stack *stack);
-int		find_highest(t_stack *stack);
+t_node		*find_highest(t_stack *stack);
 
 // manipulation //
 // void	prepend(t_stack *stack, int new_data);

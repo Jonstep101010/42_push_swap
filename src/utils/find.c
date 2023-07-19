@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 20:05:47 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/14 20:06:18 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/19 17:52:10 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,33 @@ int	find_lowest(t_stack *stack)
 /*
 ** @brief return lowest index in stack
 */
-int	find_highest(t_stack *stack)
+t_node	*find_highest(t_stack *stack)
 {
 	size_t	i;
 	t_node	*current;
 	int		highest;
+	t_node	*target;
 
 	stack->size = elementcount(stack);
 	if (stack->size == 1)
-		return ((int)stack->head->index);
+		return (stack->head);
 	highest = 0;
 	i = stack->size;
 	current = stack->head;
-	while (i > 1)
+	while (i)
 	{
 		if (highest == 0)
+		{
 			highest = current->index;
+			target = current;
+		}
 		else if (current->index > highest)
+		{
 			highest = current->index;
+			target = current;
+		}	
 		current = current->next;
 		i--;
 	}
-	return (highest);
+	return (target);
 }
