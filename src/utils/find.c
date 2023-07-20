@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 20:05:47 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/19 17:52:10 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/20 08:20:47 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	find_lowest(t_stack *stack)
 }
 
 /*
-** @brief return lowest index in stack
+** @brief return node with highest index
 */
 t_node	*find_highest(t_stack *stack)
 {

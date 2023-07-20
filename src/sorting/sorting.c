@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 19:01:24 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/19 18:30:08 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:47:29 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,36 +122,62 @@ bool	rotate_highest_b(t_box *box)
 
 	t_node	*current;
 	current = box->b.head;
-	// if (!&(box->b.head))
-	// 	return (false);
-	// direction = find_value_b(box);
 	t_node	*target;
 	target = find_highest(&(box->b));
-	// ft_printf("highest %d\n", target->index);
 	direction = calc_moves(&(box->b), target);
-	// if (direction == -1)
-	// 	return (false);
-	// if (direction == -2)
-	// {
-	// 	if (box->b.tail == target)
-	// 		return (rrb(box), true);
-	// 	// else
-	// 	// {
-	// 	// 	while (current->index != target && current != box->b.tail)
-	// 	// 		current = current->next;
-	// 	// 	if (current->index == target)
-	// 	// 		direction = calc_moves(&(box->b), current);
-	// 	// 	while (direction == 1 && box->b.head->index != target)
-	// 	// 		rb(box);
-	// 	// 	while (direction == 0 && box->b.head->index != target)
-	// 	// 		rrb(box);
-	// 	// }
-	// }
 	while (direction == 1 && (box->b.head->index != target->index))
-		rb(box);
+	{
+		// if (box->b.head->index == target->index -3 && box->b.head->next->index != target->index -1
+		// 	&& box->b.head->next->index != target->index)
+		// {
+		// 	pa(box);
+		// 	ra(box);
+		// }
+		if (box->b.head->index == target->index - 2 && box->b.head->next->index != target->index -1
+			&& box->b.head->next->index != target->index)
+		{
+			pa(box);
+			ra(box);
+		}
+		if (box->b.head->index == target->index - 1)
+			pa(box);
+		else
+			rb(box);
+	}
 	while (direction == 0 && (box->b.head->index != target->index))
-		rrb(box);
+	{
+		// if (box->b.head->index == target->index -3 && box->b.head->prev->index != target->index -1
+		// 	&& box->b.head->prev->index != target->index)
+		// {
+		// 	pa(box);
+		// 	ra(box);
+		// }
+		if (box->b.head->index == target->index - 2 && box->b.head->prev->index != target->index -1
+			&& box->b.head->prev->index != target->index)
+		{
+			pa(box);
+			ra(box);
+		}
+		if (box->b.head->index == target->index - 1)
+			pa(box);
+		else
+			rrb(box);
+	}
 	return (true);
+}
+
+void	sort_from_b(t_box *box)
+{
+	while (box->b.head)
+	{
+		//if not sorted end of stack a, make sure to sort before finding next val, only search if missing
+		if (rotate_highest_b(box))
+			pa(box);
+		if (box->a.head->index -1 >= box->a.head->next->index)
+			sa(box);
+		if (box->a.head->index -1 >= box->a.tail->index)
+			rra(box);
+	}
 }
 
 void	push_chunks(t_box *box, t_vals *chunks)
@@ -175,70 +201,12 @@ void	push_chunks(t_box *box, t_vals *chunks)
 		if (box->a.head->index < (int)box->size - 4)
 			pb(box);
 		else
-		{
-			ft_printf("[%d] %d\n", box->a.head->index, box->a.head->data);
 			ra(box);
-		}
 	}
-	//sort 5 biggest numbers
 	if (box->a.size == 5 && chunks->nbr)
 		sort_five(box);
-	// print_stack(&(box->a));
-	// print_stack(&(box->b));
-	while (box->b.head)
-	{
-		// if (box->b.head && box->b.head->index == box->a.head->index - 1 && box->a.tail->index == (int)box->size)
-		// 	pa(box);
-		// else if (is_index_sort_a(box))
-		if (rotate_highest_b(box))
-			pa(box);
-	}
-	// print_stack(&(box->a));
-	// print_stack(&(box->b));
-	// chunks->nbr = box->a.tail->chunk;
-	// chunks->id = box->a.tail->chunk;
-	// if (is_index_sort_a(box))
-	// 	ft_printf("index sorted\n");
-	// else
-	// 	ft_printf("index not sorted\n");
-	// while (box->b.head->chunk == chunks->id || box->b.tail->chunk == chunks->id)
-	// {
-	// 	if (box->b.head->index == box->a.head->index - 1 && is_sorted(&(box->a)))
-	// 		pa(box);
-	// 	// if (box->b.head->index == box->a.head->index - 2 )
-	// 	// if (box->b.head->chunk == chunks->id && box->a.tail->chunk == chunks->id)
-	// 	// {
-	// 	// 	//make sure to not get into infinite loop - prefer range with fewest rotates & bring 
-	// 	// 	//to top if necessary/possible
-	// 	// }
-	// 	// if (box->b.tail->chunk == chunks->id)
-	// 	// if (box->b.head->chunk == chunks->id)
-	// 	// {
-			
-	// 	// }
-	// }
-	// if (box->a.size == 5)
-	// 	sort_five(box);
-	// if (box->a.size == 2 && !is_sorted(&(box->a)) && box->b.head->index < box->a.head->index)
-	// 	rr(box);
-	// while (is_sorted(&(box->a)) && (box->b.head->index == box->a.head->index -1 || box->b.tail->index == box->a.head->index -1))
-	// {
-	// 	if (box->b.head->index >= box->a.head->index -2)
-	// 		pa(box);
-	// 	else if (box->a.tail->index == box->a.head->index -1)
-	// 	{
-	// 		rrb(box);
-	// 		pa(box);
-	// 	}
-	// 	else if (box->b.head->index > box->a.head->index - 50)
-	// 		rb(box);
-	// }
-	// // sort_five(box);
-	// while (box->b.head->index >= (int) box->size -1)
-	// 	pa(box);
+	sort_from_b(box);
 }
-	// box->a.head->index = 6;
-
 
 // print_chunks(box);
 void	define_chunks(t_box *box)
@@ -247,25 +215,16 @@ void	define_chunks(t_box *box)
 
 	chunks.id = 1;
 	if (box->a.size <= 100)
-		chunks.nbr = 5;
+		chunks.nbr = 4;
 	else if (box->a.size <= 200)
 		chunks.nbr = 5;
 	else if (box->a.size <= 500)
-		chunks.nbr = 7;
+		chunks.nbr = 11;
 	else
 		chunks.nbr = 30;
 	chunks.size = (((int)box->a.size) / chunks.nbr);
 	assign_chunks(box, &(chunks));
 	push_chunks(box, &chunks);
-	// while (box->b.head->chunk == chunks.nbr && box->b.head->index <= box->a.head->index - 3)
-	// 	rb(box);
-	// pa(box);
-	// if (box->a.head->index + 1 == box->a.head->next->index)
-		
-	// if (chunks.nbr == 3)
-	// 	sort_big(box);
-	// print_stack(&(box->a));
-	// print_stack(&(box->b));
 	if (!is_sorted(&(box->b)))
 		error(box);
 }
@@ -281,7 +240,13 @@ void	sort(t_box *box)
 		sort_three(box);
 	else if (box->a.size <= 5)
 		sort_five(box);
-	else if (box->a.size > 5)
+	else if (box->a.size < 45)
+	{
+		while (box->a.head)
+			pb(box);
+		sort_from_b(box);
+	}
+	else
 		define_chunks(box);
 	if (!is_sorted(&(box->a)))
 	{
