@@ -10,3 +10,4 @@ push_swap_visualizer
 *.json
 imgui.ini
 savenorme
+.DS_Store

@@ -1,4 +1,5 @@
 NAME		:= push_swap
+.DEFAULT_GOAL := all
 
 LIB			:= ft
 LIB_FT		:= include/libft/libft.a
@@ -7,9 +8,7 @@ INCS		:= include \
 
 BUILD_DIR	:= .build
 
-SRC_DIR		:= src
-DIRS		:= io operations sorting utils
-VPATH		:= $(addprefix $(SRC_DIR)/,$(DIRS))
+VPATH		:= src/io src/operations src/sorting src/utils
 
 SRC_IO		:= push_swap.c input_handling.c build_stack.c error.c free_stack.c
 SRC_OP		:= push.c swap.c rotate.c rev_rotate.c
@@ -21,24 +20,24 @@ OBJS		:= $(addprefix $(BUILD_DIR)/, $(SRCS:%.c=%.o))
 DEPS		:= $(OBJS:.o=.d)
 
 CC			:= clang
-CFLAGS		?= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		?= -Wall -Wextra -Werror
 CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L,$(dir $(LIB_FT)))
 LDLIB		:= $(addprefix -l,$(LIB))
 
-MAKEFLAGS	+= --silent --no-print-directory
+MAKEFLAGS	+= --no-print-directory
 
 DONE		= printf "\033[0;32m\xE2\x9C\x93\033[0m "
 
 all: $(NAME)
 
-$(NAME): $(LIB_FT) $(OBJS)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(LDFLAGS) $(LDLIB) -o $(NAME)
+$(NAME): $(OBJS) $(LIB_FT)
+	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIB) -o $(NAME)
 	$(info creating $(NAME) executable)
 	printf "\033[0;32m\xE2\x9C\x93\n\033[0m"
 
 $(LIB_FT):
-	$(MAKE) -C $(@D)
+	$(MAKE) -C $(@D) -B
 
 $(BUILD_DIR)/%.o: %.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
