@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:07:33 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/19 14:55:53 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:33:13 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,14 +129,3 @@ void	sort_five(t_box *box)
 	if (!is_sorted(&(box->a)))
 		sa(box);
 }
-	// t_node	*current;
-
-	// current = box->a.head;
-	// while (current->index != find_highest(&(box->a)) && current->index > 3)
-	// {
-	// 	current = current->next;
-	// }
-	// int	direction;
-
-	// direction = calc_moves(&(box->a), current);
-//13 29 15 9 92 83 65 68 7 89 78 81 88 32 24 25 61 58 62 14 35 34 75 64 30 27 60 53 90 38 69 23 56 55 48 5 47 41 4 77 20 82 21 46 91 98 52 86 72 93 42 8 49 71 33 74 2 16 12 3 57 19 17 84 85 36 22 6 31 94 40 44 80 43 96 11 26 66 37 63 97 1 70 95 54 87 79 73 67 99 51 76 45 28 59 10 39 100 18 50 

@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:34:19 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/12 13:58:33 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:33:35 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	free_stack(t_stack *stack)
 {
 	t_node	*tmp;
 	t_node	*tofree;
-	size_t	size;
+	int		size;
 	int		i;
 
 	i = 0;
 	size = elementcount(stack);
 	tmp = stack->head;
-	while (i < (int)size)
+	while (i < size)
 	{
 		tofree = tmp;
 		tmp = tmp->next;

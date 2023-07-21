@@ -6,13 +6,13 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 22:46:14 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/12 14:02:56 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:31:15 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	*check_alloc(t_box *box)
+static void	*check_alloc(t_box *box, int data)
 {
 	t_node	*new;
 
@@ -20,6 +20,7 @@ static void	*check_alloc(t_box *box)
 	new = ft_calloc(1, sizeof(t_node));
 	if (!new)
 		error(box);
+	new->data = data;
 	return (new);
 }
 
@@ -27,13 +28,13 @@ void	populate(t_box *box, int new_data)
 {
 	t_node	*new;
 
-	new = check_alloc(box);
-	new->data = new_data;
+	new = check_alloc(box, new_data);
 	if (!(box->a.head))
 	{
 		new->next = new;
 		new->prev = new;
 		box->a.head = new;
+		box->a.type = A;
 	}
 	else if ((box->a.head) == (box->a.tail))
 	{

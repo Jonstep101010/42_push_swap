@@ -14,7 +14,7 @@ VPATH		:= $(addprefix $(SRC_DIR)/,$(DIRS))
 SRC_IO		:= push_swap.c input_handling.c build_stack.c error.c free_stack.c
 SRC_OP		:= push.c swap.c rotate.c rev_rotate.c
 SRC_AB		:= calculations.c sorting.c sorting_utils.c sort_small.c sort_big.c
-SRC_UT		:= checks.c printing.c indexing.c find.c
+SRC_UT		:= checks.c printing.c
 
 SRCS		:= $(SRC_IO) $(SRC_OP) $(SRC_AB) $(SRC_UT)
 OBJS		:= $(addprefix $(BUILD_DIR)/, $(SRCS:%.c=%.o))

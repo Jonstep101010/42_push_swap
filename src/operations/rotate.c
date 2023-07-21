@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 17:07:07 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/20 09:11:39 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/21 10:55:05 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,20 @@ void	rb(t_box *box)
 
 void	rr(t_box *box)
 {
-	// box->a.size = elementcount(&(box->a));
-	// box->b.size = elementcount(&(box->b));
 	if (box->a.size < 2 && box->b.size < 2)
 		return ;
-	// else if (box->a.size < 2 || box->b.size < 2)
-	// {
-	// 	if (box->a.size > box->b.size)
-	// 		ra(box);
-	// 	else
-	// 		rb(box);
-	// 	return ;
-	// }
-	// else
-	// {
-	rotate(&(box->a));
-	rotate(&(box->b));
-	ft_printf("rr\n");
+	else if (box->a.size < 2 || box->b.size < 2)
+	{
+		if (box->a.size > box->b.size)
+			ra(box);
+		else
+			rb(box);
+		return ;
+	}
+	else
+	{
+		rotate(&(box->a));
+		rotate(&(box->b));
+		ft_printf("rr\n");
+	}
 }
