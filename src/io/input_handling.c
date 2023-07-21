@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:15:43 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/21 16:32:43 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:24:02 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static bool	check(t_stack *a, int data)
 		}
 		t_i = t_i->next;
 	}
+	if (t_i == a->tail && t_i->data == data)
+		return (false);
 	return (true);
 }
 
