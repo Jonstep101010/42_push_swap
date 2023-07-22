@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:15:43 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/21 19:24:02 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:25:23 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static bool	check(t_stack *a, int data)
 	t_node	*t_i;
 
 	a->size = elementcount(a);
-	if (a->size == 1 || !(a->head))
+	if (!(a->head))
 		return (true);
 	t_i = a->head;
 	while (t_i != a->tail)
@@ -31,7 +31,7 @@ static bool	check(t_stack *a, int data)
 		}
 		t_i = t_i->next;
 	}
-	if (t_i == a->tail && t_i->data == data)
+	if (t_i->data == data)
 		return (false);
 	return (true);
 }
@@ -48,6 +48,8 @@ static bool	int_format(const char *str)
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
+	if (str[i] == '\0')
+		return (false);
 	while (str[i])
 	{
 		if (!(ft_isdigit(str[i])))

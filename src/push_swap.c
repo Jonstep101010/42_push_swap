@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:17:14 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/21 17:40:09 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:26:20 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,18 @@ int	main(int argc, char *argv[])
 	t_box	box;
 
 	ft_bzero(&box, sizeof(t_box));
-	if (argc >= 2)
-	{
-		parse_input(&box, argc, argv);
-		if (elementcount(&box.a) == 1)
-			return (0);
-		box.size = elementcount(&(box.a));
-		sort(&box);
-	}
+	if (argc < 2)
+		return (EXIT_FAILURE);
+	parse_input(&box, argc, argv);
+	if (elementcount(&box.a) == 1)
+		return (0);
+	box.size = elementcount(&(box.a));
+	sort(&box);
+	display_return(&(box.a));
 	free_stack(&(box.a));
 	if (&(box.b) || box.b.head)
 		free_stack(&(box.b));
-	exit(0);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 /* @brief display values inside sorted stack
@@ -40,6 +39,8 @@ void	display_return(t_stack *box)
 {
 	t_node	*t_i;
 
+	if (!is_sorted(box))
+		ft_printf("not sorted!\n");
 	if (!box->head || !box->tail)
 		return ;
 	t_i = box->head;

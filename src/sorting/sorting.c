@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 19:01:24 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/21 15:16:27 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:18:37 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ void	sort(t_box *box)
 	}
 	else
 		sort_chunks(box);
-	if (!is_sorted(&(box->a)))
-		error(box);
+	// if (!is_sorted(&(box->a)))
+	// 	error(box);
 }

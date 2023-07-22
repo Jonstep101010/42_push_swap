@@ -8,14 +8,15 @@ INCS		:= include \
 
 BUILD_DIR	:= .build
 
-VPATH		:= src/io src/operations src/sorting src/utils
+VPATH		:= src/ src/io src/operations src/sorting src/utils
 
-SRC_IO		:= push_swap.c input_handling.c build_stack.c error.c free_stack.c
+SRC	:= push_swap.c error.c
+SRC_IO		:= input_handling.c build_stack.c free_stack.c
 SRC_OP		:= push.c swap.c rotate.c rev_rotate.c
 SRC_AB		:= calculations.c sorting.c sorting_utils.c sort_small.c sort_big.c
 SRC_UT		:= checks.c printing.c
 
-SRCS		:= $(SRC_IO) $(SRC_OP) $(SRC_AB) $(SRC_UT)
+SRCS		:= $(SRC) $(SRC_IO) $(SRC_OP) $(SRC_AB) $(SRC_UT)
 OBJS		:= $(addprefix $(BUILD_DIR)/, $(SRCS:%.c=%.o))
 DEPS		:= $(OBJS:.o=.d)
 
@@ -25,7 +26,7 @@ CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L,$(dir $(LIB_FT)))
 LDLIB		:= $(addprefix -l,$(LIB))
 
-MAKEFLAGS	+= --no-print-directory
+MAKEFLAGS	+= --silent --no-print-directory
 
 DONE		= printf "\033[0;32m\xE2\x9C\x93\033[0m "
 

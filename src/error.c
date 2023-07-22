@@ -6,7 +6,7 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:23:35 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/21 14:24:50 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:02:35 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	error(t_box *box)
 	write(2, "Error\n", 6);
 	free_stack(&(box->a));
 	free_stack(&(box->b));
-	exit(1);
+	exit(EXIT_FAILURE);
 }
 
 // void	error_msg(char *msg, t_box *box)
