@@ -6,13 +6,19 @@
 /*   By: jschwabe <jschwabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:17:14 by jschwabe          #+#    #+#             */
-/*   Updated: 2023/07/22 16:26:20 by jschwabe         ###   ########.fr       */
+/*   Updated: 2023/07/24 09:56:01 by jschwabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 void	display_return(t_stack *box);
+
+// void	check_leaks(void)
+// {
+// 	system("leaks push_swap");
+// }
+	// atexit(check_leaks);
 
 int	main(int argc, char *argv[])
 {
@@ -23,11 +29,14 @@ int	main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	parse_input(&box, argc, argv);
 	if (elementcount(&box.a) == 1)
-		return (0);
+	{
+		free_stack(&(box.a));
+		return (EXIT_FAILURE);
+	}
 	box.size = elementcount(&(box.a));
 	sort(&box);
-	display_return(&(box.a));
-	free_stack(&(box.a));
+	if (&(box.a) || &(box.a.head))
+		free_stack(&(box.a));
 	if (&(box.b) || box.b.head)
 		free_stack(&(box.b));
 	return (EXIT_SUCCESS);
