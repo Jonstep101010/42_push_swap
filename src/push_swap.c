@@ -35,7 +35,7 @@ int	main(int argc, char *argv[])
 	}
 	box.size = elementcount(&(box.a));
 	sort(&box);
-	if (&(box.a) || &(box.a.head))
+	if (&(box.a) || box.a.head)
 		free_stack(&(box.a));
 	if (&(box.b) || box.b.head)
 		free_stack(&(box.b));
