@@ -1,10 +1,13 @@
 NAME		:= push_swap
 .DEFAULT_GOAL := all
 
-LIB			:= ft
-LIB_FT		:= include/libft/libft.a
+LIBFT		:= include/libft/libft.a
+LIBFTPRINTF	:= include/libftprintf/libftprintf.a
+LIBUTILS	:= include/libutils/libutils.a
 INCS		:= include \
-	include/libft/
+	include/libft/ \
+	include/libftprintf/ \
+	include/libutils/include
 
 BUILD_DIR	:= .build
 
@@ -23,8 +26,8 @@ DEPS		:= $(OBJS:.o=.d)
 CC			:= clang
 CFLAGS		?= -Wall -Wextra -Werror
 CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
-LDFLAGS		:= $(addprefix -L,$(dir $(LIB_FT)))
-LDLIB		:= $(addprefix -l,$(LIB))
+LDFLAGS		:= $(addprefix -L, $(dir $(LIBFT)) $(dir $(LIBFTPRINTF)) $(dir $(LIBUTILS)))
+LDLIB		:= $(addprefix -l, ft ftprintf utils)
 
 # MAKEFLAGS	+= --silent --no-print-directory
 
@@ -32,12 +35,18 @@ DONE		= printf "\033[0;32m\xE2\x9C\x93\033[0m "
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIB_FT)
+$(NAME): $(OBJS) $(LIBFT) $(LIBFTPRINTF) $(LIBUTILS)
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIB) -o $(NAME)
 	$(info creating $(NAME) executable)
 	printf "\033[0;32m\xE2\x9C\x93\n\033[0m"
 
-$(LIB_FT):
+$(LIBFT):
+	$(MAKE) -C $(@D) -B
+
+$(LIBFTPRINTF):
+	$(MAKE) -C $(@D) -B
+
+$(LIBUTILS):
 	$(MAKE) -C $(@D) -B
 
 $(BUILD_DIR)/%.o: %.c | $(BUILD_DIR)
@@ -51,12 +60,16 @@ $(BUILD_DIR):
 
 clean:
 	$(info Cleaning...)
-	make -C $(dir $(LIB_FT)) clean
+	make -C $(dir $(LIBFT)) clean
+	make -C $(dir $(LIBFTPRINTF)) clean
+	make -C $(dir $(LIBUTILS)) clean
 	rm -rf $(NAME)
 	printf "\033[0;32m\xE2\x9C\x93\n\033[0m"
 
 fclean: clean
-	make -C $(dir $(LIB_FT)) fclean
+	make -C $(dir $(LIBFT)) fclean
+	make -C $(dir $(LIBFTPRINTF)) fclean
+	make -C $(dir $(LIBUTILS)) fclean
 	rm -rf *.d
 	rm -rf $(BUILD_DIR)
 

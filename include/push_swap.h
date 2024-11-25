@@ -16,6 +16,7 @@
 # include "struct.h"
 # include "libft.h"
 # include <stdbool.h>
+# include "ft_printf.h"
 # include "operations.h"
 
 int		main(int argc, char *argv[]);
