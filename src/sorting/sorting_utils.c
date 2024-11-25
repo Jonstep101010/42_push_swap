@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "operations.h"
 
 static void	rot_high(t_box *box, t_node *target)
 {

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "operations.h"
 
 static bool	push_member(t_box *box, t_vals *vals)
 {

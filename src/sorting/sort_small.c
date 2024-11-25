@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "operations.h"
 
 /*
 ** @brief calculate rotation to get to value
