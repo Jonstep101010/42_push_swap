@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "ft_printf.h"
 
 static t_node	*pop(t_stack *to_pop)
 {

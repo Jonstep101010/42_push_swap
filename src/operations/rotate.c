@@ -11,12 +11,13 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "ft_printf.h"
 
 /*
 ** @brief shift up, first to last:
 ** old head next becomes new head
 ** old head becomes new tail, new tail prev is old tail
-** @param stack 
+** @param stack
 */
 static void	rotate(t_stack *stack)
 {
