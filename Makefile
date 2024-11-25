@@ -5,15 +5,15 @@ LIBFT		:= include/libft/libft.a
 LIBFTPRINTF	:= include/libftprintf/libftprintf.a
 LIBUTILS	:= include/libutils/libutils.a
 INCS		:= include \
-	include/libft/ \
-	include/libftprintf/ \
-	include/libutils/include
+				include/libft/ \
+				include/libftprintf/ \
+				include/libutils/include/
 
 BUILD_DIR	:= .build
 
 VPATH		:= src/ src/io src/operations src/sorting src/utils
 
-SRC	:= push_swap.c error.c
+SRC			:= push_swap.c error.c
 SRC_IO		:= input_handling.c build_stack.c free_stack.c
 SRC_OP		:= push.c swap.c rotate.c rev_rotate.c
 SRC_AB		:= calculations.c sorting.c sorting_utils.c sort_small.c sort_big.c
