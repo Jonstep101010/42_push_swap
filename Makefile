@@ -4,7 +4,7 @@ NAME		:= push_swap
 LIB			:= ft
 LIB_FT		:= include/libft/libft.a
 INCS		:= include \
-	include/libft/include
+	include/libft/
 
 BUILD_DIR	:= .build
 
@@ -26,7 +26,7 @@ CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L,$(dir $(LIB_FT)))
 LDLIB		:= $(addprefix -l,$(LIB))
 
-MAKEFLAGS	+= --silent --no-print-directory
+# MAKEFLAGS	+= --silent --no-print-directory
 
 DONE		= printf "\033[0;32m\xE2\x9C\x93\033[0m "
 
@@ -86,6 +86,6 @@ check: norme
 upgrade:
 	-$(MAKE) update && $(MAKE) re
 
-.PHONY: run update upgrade re vis
+.PHONY: run update upgrade re vis fclean clean re
 # .SILENT:
 -include $(DEPS)

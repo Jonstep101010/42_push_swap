@@ -11,3 +11,5 @@ push_swap_visualizer
 imgui.ini
 savenorme
 .DS_Store
+
+.cache/
