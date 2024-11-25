@@ -13,8 +13,7 @@
 #ifndef OPERATIONS_H
 # define OPERATIONS_H
 
-# include "push_swap.h"
-
+# include "struct.h"
 // push //
 
 void	pa(t_box *box);
