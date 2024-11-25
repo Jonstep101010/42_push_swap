@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "ft_printf.h"
 
 /*
 ** @brief swap first two elements' data within stack

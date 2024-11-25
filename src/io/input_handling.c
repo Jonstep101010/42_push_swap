@@ -11,6 +11,10 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "arr_utils.h"
+#include "str_utils.h"
+#include "libft.h"
+#include <limits.h>
 
 /*
 ** @brief checks for duplicates in stack

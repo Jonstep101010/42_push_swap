@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "operations.h"
 
 static size_t	index_box(t_box *box)
 {

@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "ft_printf.h"
+#include "libft.h"
 
 void	display_return(t_stack *box);
 

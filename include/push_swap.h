@@ -14,8 +14,8 @@
 # define PUSH_SWAP_H
 
 # include "struct.h"
-# include "libft.h"
-# include "operations.h"
+# include <stdbool.h>
+# include <stddef.h>
 
 int		main(int argc, char *argv[]);
 
